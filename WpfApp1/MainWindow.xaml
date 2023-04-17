@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="66" Margin="341,148,0,0" VerticalAlignment="Top" Width="103"/>
+
+        <Grid HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="145">
+            <Button Content="Scenario Set" HorizontalAlignment="Center" Height="37" Margin="10,96,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click" IsCancel="True"/>
+            <Button Content="Scenario Set" HorizontalAlignment="Center" Height="37" Margin="10,184,0,0" VerticalAlignment="Top" Width="121"/>
+            <TextBox HorizontalAlignment="Center" Height="44" TextWrapping="Wrap" Text="운용중" VerticalAlignment="Center" Width="131" Margin="0,0,0,376" FontWeight="Bold" FontSize="28"/>
+            <TextBlock HorizontalAlignment="Left" Height="24" Margin="8,49,0,0" TextWrapping="Wrap" Text="Target" VerticalAlignment="Top" Width="110"/>
+            <TextBlock HorizontalAlignment="Left" Height="28" Margin="3,151,0,0" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="117"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="181" Margin="0,239,0,0" Stroke="Black" VerticalAlignment="Top" Width="145"/>
+        </Grid>
+
     </Grid>
 </Window>
