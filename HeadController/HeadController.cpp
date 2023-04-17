@@ -4,13 +4,13 @@
 #include "pch.h"
 #include "framework.h"
 #include "HeadController.h"
-
+#include <cmath>
 // TODO: 라이브러리 함수의 예제입니다.
 void fnHeadController()
 {
 }
 
-void HeadController::starSimulation(double _dt)
+void HeadController::starSimulation()
 {
 	m_status = HEAD_CONTROLLER_STATUS::RUN;
 }
@@ -32,6 +32,7 @@ void HeadController::setTargetScenario(double cord[4], char kind, double speed)
 
 void HeadController::update()
 {
+	updateStatus();
 	if (m_status == HEAD_CONTROLLER_STATUS::READY)
 	{
 
@@ -48,4 +49,29 @@ void HeadController::update()
 	{
 
 	}
+}
+
+void HeadController::updateStatus()
+{
+	// 충돌 상태가 될 시 이벤트 처리 상태로 전환
+	if (m_status == HEAD_CONTROLLER_STATUS::RUN && checkDetonation())
+	{
+		m_status = HEAD_CONTROLLER_STATUS::EVENT_CHECK;
+	}
+	else if(m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
+	{
+
+	}
+}
+
+bool HeadController::checkDetonation()
+{
+	bool res = false;
+	double distance = sqrt(pow(m_missleState.position[0], 2) - pow(m_targetState.position[0], 2) + pow(m_missleState.position[1], 2) - pow(m_targetState.position[1], 2));
+	if (distance <= 2.0)
+	{
+		res = true;
+	}
+	else;
+	return res;
 }
