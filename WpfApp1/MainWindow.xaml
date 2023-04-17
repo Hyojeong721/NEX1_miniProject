@@ -6,16 +6,40 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
 
-        <Grid HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="145">
-            <Button Content="Scenario Set" HorizontalAlignment="Center" Height="37" Margin="10,96,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click" IsCancel="True"/>
-            <Button Content="Scenario Set" HorizontalAlignment="Center" Height="37" Margin="10,184,0,0" VerticalAlignment="Top" Width="121"/>
+        <Grid HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="170">
             <TextBox HorizontalAlignment="Center" Height="44" TextWrapping="Wrap" Text="운용중" VerticalAlignment="Center" Width="131" Margin="0,0,0,376" FontWeight="Bold" FontSize="28"/>
-            <TextBlock HorizontalAlignment="Left" Height="24" Margin="8,49,0,0" TextWrapping="Wrap" Text="Target" VerticalAlignment="Top" Width="110"/>
-            <TextBlock HorizontalAlignment="Left" Height="28" Margin="3,151,0,0" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="117"/>
+
+
+            <Border BorderBrush="Gray" BorderThickness="0" Background="Beige" Width="170"  Margin="0,49,0,244">
+                <Border.Effect>
+                    <DropShadowEffect Direction="-10" Opacity="0.200"/>
+                </Border.Effect>
+                <Grid x:Name="TargetScenBox" HorizontalAlignment="Left" Height="153" VerticalAlignment="Top" Width="170" Margin="0,10,-0.4,-49.4">
+                    <TextBlock HorizontalAlignment="Left" Height="24" Margin="11,-1,0,0" TextWrapping="Wrap" Text="Target" VerticalAlignment="Top" Width="67" FontWeight="Bold" FontSize="15"/>
+                    <Button x:Name="TargetScenBtn" Content="Set" HorizontalAlignment="Left" Height="23" Margin="103,0,0,0" VerticalAlignment="Top" Width="57" Click="Button_Click"/>
+                    <TextBlock x:Name="Type" HorizontalAlignment="Left" Height="20" Margin="10,28,0,0" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Width="68"/>
+                    <TextBlock x:Name="StartPoint" HorizontalAlignment="Left" Height="20" Margin="10,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68"><Run Text="Start"/><Run Text=" "/><Run Text="Point"/></TextBlock>
+                    <TextBlock x:Name="FinalPoint" HorizontalAlignment="Left" Height="20" Margin="10,89,0,0" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="68"/>
+                    <TextBlock x:Name="Velocity" HorizontalAlignment="Left" Height="20" Margin="10,48,0,0" TextWrapping="Wrap" Text="Velocity" VerticalAlignment="Top" Width="68"/>
+                    <TextBlock x:Name="Type_Copy" HorizontalAlignment="Left" Height="20" Margin="92,28,0,0" TextWrapping="Wrap" Text="missile" VerticalAlignment="Top" Width="68" TextAlignment="Center"/>
+                    <TextBlock x:Name="StartPoint_Copy" HorizontalAlignment="Left" Height="20" Margin="92,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" TextAlignment="Center" Text="0.0"/>
+                    <TextBlock x:Name="FinalPoint_Copy" HorizontalAlignment="Left" Height="20" Margin="92,89,0,0" TextWrapping="Wrap" Text="8.8" VerticalAlignment="Top" Width="68" TextAlignment="Center"/>
+                    <TextBlock x:Name="Velocity_Copy" HorizontalAlignment="Left" Height="20" Margin="92,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" TextAlignment="Center"><Run Text="5"/><Run Text=" "/><Run Text="mach"/></TextBlock>
+                </Grid>
+            </Border>
+
+
+
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="181" Margin="0,239,0,0" Stroke="Black" VerticalAlignment="Top" Width="145"/>
         </Grid>
+        <Grid HorizontalAlignment="Left" Margin="623,0,-0.4,0" Height="420" VerticalAlignment="Top" Width="170" >
+            <Button Content="START" HorizontalAlignment="Center" Height="30" Margin="18,344,0,0" VerticalAlignment="Top" Width="130" IsCancel="True"/>
+            <Button Content="STOP" HorizontalAlignment="Center" Height="30" Margin="18,379,0,0" VerticalAlignment="Top" Width="130"/>
+        </Grid>
+
 
     </Grid>
 </Window>
