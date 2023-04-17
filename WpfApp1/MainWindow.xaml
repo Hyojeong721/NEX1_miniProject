@@ -23,7 +23,7 @@
                 <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
             </Border.Effect>
             <Grid>
-                <Button x:Name="TargetSet" Content="Set" HorizontalAlignment="Left" Height="29" Margin="178,15,0,0" VerticalAlignment="Top" Width="90" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18"/>
+                <Button x:Name="TargetSet" Content="Set" HorizontalAlignment="Left" Height="29" Margin="178,15,0,0" VerticalAlignment="Top" Width="90" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" Click="TargetSet_Click"/>
 
                 <TextBlock x:Name="TargetInfo" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Target" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
                 <TextBlock x:Name="TargetType" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Width="85" FontSize="18" Margin="28,55,0,0"/>
