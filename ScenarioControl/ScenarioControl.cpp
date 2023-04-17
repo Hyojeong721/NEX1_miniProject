@@ -7,18 +7,26 @@
 #include "ScenarioControl.h"
 
 void Missile::SetMissile(double coordinate[2], double range) {
-	_x = coordinate[0];
-	_y = coordinate[1];
-	_range = range;
+	missileInfo._x = coordinate[0];
+	missileInfo._y = coordinate[1];
+	missileInfo.range = range;
+}
+
+MissileInfo Missile::GetMissile() {
+	return missileInfo;
 }
 
 void Target::SetTarget(double coordinate[4], char kind, double speed) {
-	_sx = coordinate[0];
-	_sy = coordinate[1];
-	_ex = coordinate[2];
-	_ey = coordinate[3];
-	_kind = kind;
-	_speed = speed;
+	targetInfo._sx = coordinate[0];
+	targetInfo._sy = coordinate[1];
+	targetInfo._ex = coordinate[2];
+	targetInfo._ey = coordinate[3];
+	targetInfo.kind = kind;
+	targetInfo.speed = speed;
+}
+
+TargetInfo Target::GetTarget() {
+	return targetInfo;
 }
 
 void ScenarioSetting::SetMissile(double cord[2], double range) {
@@ -27,4 +35,12 @@ void ScenarioSetting::SetMissile(double cord[2], double range) {
 
 void ScenarioSetting::SetTarget(double cord[4], char kind, double speed) {
 	target.SetTarget(cord, kind, speed);
+}
+
+MissileInfo ScenarioSetting::GetMissile() {
+	return missile.GetMissile();
+}
+
+TargetInfo ScenarioSetting::GetTarget() {
+	return target.GetTarget();
 }
