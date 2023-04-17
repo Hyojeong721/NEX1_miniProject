@@ -8,7 +8,7 @@ private:
 	MissileInfo missileInfo;
 
 public:
-	void SetMissile(double coordinate[2], double range);
+	void SetMissile(double coordinate[2]);
 	MissileInfo GetMissile();
 };
 
@@ -25,7 +25,7 @@ public:
 
 class ScenarioSetting {
 public:
-	void SetMissile(double cord[2], double range = 50000);
+	void SetMissile(double cord[2]);
 	void SetTarget(double cord[4], char kind, double speed);
 	MissileInfo GetMissile();
 	TargetInfo GetTarget();

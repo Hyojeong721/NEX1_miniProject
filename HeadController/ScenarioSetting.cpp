@@ -4,10 +4,9 @@
 #include "ScenarioSetting.h"
 //
 
-void Missile::SetMissile(double coordinate[2], double range) {
+void Missile::SetMissile(double coordinate[2]) {
 	missileInfo._x = coordinate[0];
 	missileInfo._y = coordinate[1];
-	missileInfo.range = range;
 }
 
 MissileInfo Missile::GetMissile() {
@@ -27,8 +26,8 @@ TargetInfo Target::GetTarget() {
 	return targetInfo;
 }
 
-void ScenarioSetting::SetMissile(double cord[2], double range) {
-	missile.SetMissile(cord, range);
+void ScenarioSetting::SetMissile(double cord[2]) {
+	missile.SetMissile(cord);
 }
 
 void ScenarioSetting::SetTarget(double cord[4], char kind, double speed) {

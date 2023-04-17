@@ -20,9 +20,9 @@ void HeadController::stopSimulation()
 	m_status = HEAD_CONTROLLER_STATUS::END;
 }
 
-void HeadController::setMissleScenario(double cord[2], double range)
+void HeadController::setMissleScenario(double cord[2])
 {
-	m_scen.SetMissile(cord, range);
+	m_scen.SetMissile(cord);
 }
 
 void HeadController::setTargetScenario(double cord[4], char kind, double speed)

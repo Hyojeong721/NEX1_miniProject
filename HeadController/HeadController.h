@@ -10,7 +10,7 @@ public:
 	void starSimulation(double dt);							// 시뮬레이션 수행
 	void stopSimulation();									// 시뮬레이션 중지
 
-	void setMissleScenario(double cord[2], double range = 50000);		// int _sx, int _sy
+	void setMissleScenario(double cord[2]);		// int _sx, int _sy
 	void setTargetScenario(double cord[4], char kind, double speed);
 	
 	inline State getMisslePosition() { return m_missleState; };
