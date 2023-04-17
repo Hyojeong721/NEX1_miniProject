@@ -25,7 +25,19 @@ namespace WpfApp1
         {
             //cHeadControl.add(3, 4);
             InitializeComponent();
+            WindowStyle = WindowStyle.None;
+            ResizeMode = ResizeMode.NoResize;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window targetScen = new TargetScen();
+            targetScen.Owner = Application.Current.MainWindow;
+            targetScen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            targetScen.ShowDialog();
+        }
+
         private CHeadControllerWrapper wrapper;
+
     }
 }
