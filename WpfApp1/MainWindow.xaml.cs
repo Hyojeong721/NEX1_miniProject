@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CPPWAPPRER;
 
 namespace WpfApp1
 {
@@ -22,6 +23,7 @@ namespace WpfApp1
     {
         public MainWindow()
         {
+            //cHeadControl.add(3, 4);
             InitializeComponent();
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
@@ -34,6 +36,8 @@ namespace WpfApp1
             targetScen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             targetScen.ShowDialog();
         }
+
+        private CHeadControllerWrapper wrapper;
 
     }
 }
