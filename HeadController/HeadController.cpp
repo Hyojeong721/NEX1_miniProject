@@ -10,10 +10,42 @@ void fnHeadController()
 {
 }
 
-void HeadController::setMissleScenario(int _sx, int _sy)
+void HeadController::starSimulation(double _dt)
 {
+	m_status = HEAD_CONTROLLER_STATUS::RUN;
 }
 
-void HeadController::setTargetScenario(int _sx, int _sy, int _ex, int _ey, char _kind, double _speed)
+void HeadController::stopSimulation()
 {
+	m_status = HEAD_CONTROLLER_STATUS::END;
+}
+
+void HeadController::setMissleScenario(double cord[2], double range)
+{
+	m_scen.SetMissile(cord, range);
+}
+
+void HeadController::setTargetScenario(double cord[4], char kind, double speed)
+{
+	m_scen.SetTarget(cord, kind, speed);
+}
+
+void HeadController::update()
+{
+	if (m_status == HEAD_CONTROLLER_STATUS::READY)
+	{
+
+	}
+	else if (m_status == HEAD_CONTROLLER_STATUS::RUN)
+	{
+
+	}
+	else if (m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
+	{
+
+	}
+	else if (m_status == HEAD_CONTROLLER_STATUS::END)
+	{
+
+	}
 }

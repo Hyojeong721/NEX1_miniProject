@@ -8,7 +8,21 @@ enum class HEAD_CONTROLLER_STATUS : unsigned int
 };
 
 
-struct MissleState
-{
+// 유도탄 정보
+struct MissileInfo {
+	double _x, _y;
+	double range;
+};
 
+// 공중 위협기 정보
+struct TargetInfo {
+	double _sx, _sy;
+	double _ex, _ey;
+	char kind;
+	double speed;
+};
+
+struct State
+{
+	double position[2]{0,};
 };
