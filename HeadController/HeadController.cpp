@@ -60,7 +60,7 @@ void HeadController::updateStatus()
 	}
 	else if(m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
 	{
-
+		//  요격 이벤트 전송
 	}
 }
 

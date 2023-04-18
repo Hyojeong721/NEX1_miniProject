@@ -18,7 +18,11 @@ enum class COMM_STATUS : unsigned
 /// <summary>
 /// 통신 목록
 /// </summary>
-/// 
+ 
+struct CommStruct
+{
+	char* data;
+};
 
 // 유도탄 시나리오
 struct MissileInfo {
@@ -44,4 +48,9 @@ struct checkSum
 {
 	COMM_STATUS status{COMM_STATUS::NS};		   // 통신상태
 	double tick{0.0};			   //운용통제기 현재 시간
+};
+
+struct attackEventMessge
+{
+	bool isSuccess{ false };
 };
