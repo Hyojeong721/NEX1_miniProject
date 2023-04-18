@@ -5,6 +5,7 @@
 #include "framework.h"
 #include "HeadController.h"
 #include <cmath>
+
 // TODO: 라이브러리 함수의 예제입니다.
 void fnHeadController()
 {
@@ -13,6 +14,16 @@ void fnHeadController()
 void HeadController::starSimulation()
 {
 	m_status = HEAD_CONTROLLER_STATUS::RUN;
+
+	if (!isExcute)
+	{
+		threads.push_back(std::thread(&HeadController::excuteSimTread, this));
+	}
+
+	for (auto& thread : threads)
+	{
+		thread.detach();
+	}
 }
 
 void HeadController::stopSimulation()
@@ -28,6 +39,22 @@ void HeadController::setMissleScenario(double cord[2])
 void HeadController::setTargetScenario(double cord[4], char kind, double speed)
 {
 	m_scen.SetTarget(cord, kind, speed);
+}
+
+void HeadController::readData()
+{
+	//객체가 소멸시에 unlock 되는 특성을 가지고 있습니다.
+	std::lock_guard<std::mutex> lg{ mutex_ };
+	
+	// 통신으로 데이터 받기 구현
+}
+
+void HeadController::writeData()
+{
+	//객체가 소멸시에 unlock 되는 특성을 가지고 있습니다.
+	std::lock_guard<std::mutex> lg{ mutex_ };
+	
+	// 통신으로 데이터 보내기 구현
 }
 
 void HeadController::update()
@@ -61,6 +88,14 @@ void HeadController::updateStatus()
 	else if(m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
 	{
 		//  요격 이벤트 전송
+	}
+}
+
+void HeadController::excuteSimTread()
+{
+	while (m_status != HEAD_CONTROLLER_STATUS::END)
+	{
+		update();
 	}
 }
 
