@@ -9,7 +9,7 @@ public:
 	AttackEvent() {};
 	~AttackEvent() {};
 	AttackInfo CalculateAttackEvent();
-private:
+//private:
 	void SettingParameters(MissileInfo missileinfo, TargetInfo targetInfo);
 	AttackInfo InitializationAttackEvent();
 	bool CheckAttackAvailable();
