@@ -27,12 +27,14 @@ namespace WpfApp1
 
         private void TargetSet_Click(object sender, RoutedEventArgs e)
         {
+
             Window TargetScenario = new TargetScenario();
 
             TargetScenario.Owner = Application.Current.MainWindow; // 메인화면 중앙에 팝업창 띄우기
             TargetScenario.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             TargetScenario.ShowDialog();
+
         }
 
         private void MissileSet_Click(object sender, RoutedEventArgs e)
