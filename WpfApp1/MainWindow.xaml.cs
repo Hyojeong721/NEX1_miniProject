@@ -23,6 +23,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void TargetSet_Click(object sender, RoutedEventArgs e)
