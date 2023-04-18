@@ -24,7 +24,7 @@ public:
 	inline State getTargetPosition() { return m_targetState; };
 private:
 	void readData();		// 데이터 읽기
-	void writeData();		// 데이터 쓰기
+	void writeStatusData();		// 데이터 쓰기
 	void update();			//상태에 따른 모의기 운영
 	void excuteSimTread();	// 시뮬레이션 스레드 수행
 	bool checkDetonation();	// 충돌 여부판단
