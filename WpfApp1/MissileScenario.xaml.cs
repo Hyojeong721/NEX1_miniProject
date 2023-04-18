@@ -17,6 +17,8 @@ namespace WpfApp1
     /// <summary>
     /// MissileScenario.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+
     public partial class MissileScenario : Window
     {
         public MissileScenario()
@@ -29,10 +31,13 @@ namespace WpfApp1
             Window.GetWindow(this).Close();
         }
 
-        private void Scenario_Set_Btn_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
-
+            double targetSx = Double.Parse(MissileFinalPoint_X_Set.Text);
+            double targetSy = Double.Parse(MissileFinalPoint_Y_Set.Text);
+            Wrapper.simulationCtrl.setMissleScenario(targetSx, targetSy);
+            MessageBox.Show("유도탄 시나리오 설정 완료");
+            Window.GetWindow(this).Close();
         }
     }
 }

@@ -19,14 +19,14 @@ private:
 	TargetInfo targetInfo;
 
 public:
-	void SetTarget(double coordinate[4], char kind, double speed);
+	void SetTarget(double coordinate[4], int kind, double speed);
 	TargetInfo GetTarget();
 };
 
 class ScenarioSetting {
 public:
 	void SetMissile(double cord[2]);
-	void SetTarget(double cord[4], char kind, double speed);
+	void SetTarget(double cord[4], int kind, double speed);
 	MissileInfo GetMissile();
 	TargetInfo GetTarget();
 

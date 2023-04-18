@@ -1,11 +1,11 @@
 #include"pch.h"
 #include"AttackEvent.h"
 
-AttackInfo AttackEvent::CalculateAttackEvent()
+AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo targetInfo)
 {
 	//------------------------------------------------
 	// 	1. 시나리오 파라미터 세팅(유도탄, 공중위협 - 속도, 초기위치, 목표위치)
-	InitializationAttackEvent();
+	SettingParameters(missileinfo, targetInfo);
 	//------------------------------------------------
 	//  2. 리턴값 초기화
 	AttackInfo attackinfo;
@@ -88,20 +88,6 @@ AttackInfo AttackEvent::CalculateAttackEvent()
 
 	return attackinfo;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void AttackEvent::SettingParameters(MissileInfo missileinfo, TargetInfo targetInfo)

@@ -1,5 +1,6 @@
 #pragma once
 #include "ScenarioSetting.h"
+#include "AttackEvent.h"
 
 #include <vector>
 #include <thread>
@@ -28,7 +29,8 @@ private:
 	void excuteSimTread();	// 시뮬레이션 스레드 수행
 	bool checkDetonation();	// 충돌 여부판단
 private:
-
+	AttackEvent attackevent;
+	AttackInfo attackInfo;
 	HEAD_CONTROLLER_STATUS m_status{ HEAD_CONTROLLER_STATUS::READY };
 	ScenarioSetting m_scen;
 	State m_missleState;

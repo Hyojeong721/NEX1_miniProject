@@ -110,10 +110,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+
     <None Include="Resources\그리드.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\gridimage.PNG" />
+
+    <ProjectReference Include="..\HeadControllerWrapper\HeadControllerWrapper.vcxproj">
+      <Project>{0c68e615-edaf-4f29-8d5f-a383fb70e9c6}</Project>
+      <Name>HeadControllerWrapper</Name>
+    </ProjectReference>
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

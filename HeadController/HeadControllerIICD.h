@@ -1,4 +1,5 @@
 #pragma once
+
 enum class HEAD_CONTROLLER_STATUS : unsigned int
 {
 	READY = 0U,		//운용준비상태
@@ -33,7 +34,7 @@ struct MissileInfo {
 struct TargetInfo {
 	double _sx, _sy;		// 발사점
 	double _ex, _ey;		// 탄착점
-	char kind;				// 위협기 종류
+	int kind;				// 위협기 종류
 	double speed;			// 위협기 속도
 };
 

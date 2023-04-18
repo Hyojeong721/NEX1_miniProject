@@ -105,6 +105,8 @@ void HeadController::updateStatus()
 
 void HeadController::excuteSimTread()
 {
+	attackInfo = attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget());
+
 	while (m_status != HEAD_CONTROLLER_STATUS::END)
 	{
 		update();

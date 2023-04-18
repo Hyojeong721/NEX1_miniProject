@@ -62,7 +62,8 @@
 
             <Grid>
                 <TextBlock x:Name="EventLogTitle"  Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Event Log" VerticalAlignment="Top" Width="129" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
-                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="132" TextWrapping="Wrap" Text="로그 들어와야함" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,71,0,0"/>
+
+                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="132" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,49,0,0"/>
 
             </Grid>
         </Border>
