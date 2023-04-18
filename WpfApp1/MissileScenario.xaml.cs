@@ -29,8 +29,9 @@ namespace WpfApp1
             Window.GetWindow(this).Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Scenario_Set_Btn_Click(object sender, RoutedEventArgs e)
         {
+            
 
         }
     }
