@@ -37,6 +37,14 @@ struct TargetInfo {
 	double speed;			// 위협기 속도
 };
 
+// 요격 이벤트 정보
+struct AttackInfo {
+	bool checkAttackAvailable;	// 요격 가능 여부
+	double launchTime;			// 유도탄 발사 시간
+	double attackPoint_x;		// 요격 지점 x 좌표
+	double attackPoint_y;		// 요격 지점 y 좌표
+};
+
 // 모의 결과 수신 정보
 struct State
 {	
