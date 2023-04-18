@@ -46,5 +46,10 @@ namespace WpfApp1
 
             MissileScenario.ShowDialog();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
