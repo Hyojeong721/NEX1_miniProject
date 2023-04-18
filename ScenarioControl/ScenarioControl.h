@@ -1,6 +1,18 @@
 #pragma once
-#include "HeadControllerIICD.h"
-#include "pch.h"
+#include "Message.h"
+
+//시나리오 입력
+class ScenarioSetting {
+private:
+	Missile missile;
+	Target target;
+
+public:
+	void SetMissile(double cord[2], double range);
+	void SetTarget(double cord[4], char kind, double speed);
+	MissileInfo GetMissile();
+	TargetInfo GetTarget();
+};
 
 //유도탄 시작 지점 x,y 좌표
 class Missile {
@@ -8,7 +20,7 @@ private:
 	MissileInfo missileInfo;
 
 public:
-	void SetMissile(double coordinate[2]);
+	void SetMissile(double coordinate[2], double range);
 	MissileInfo GetMissile();
 };
 
@@ -21,16 +33,4 @@ private:
 public:
 	void SetTarget(double coordinate[4], char kind, double speed);
 	TargetInfo GetTarget();
-};
-
-class ScenarioSetting {
-public:
-	void SetMissile(double cord[2]);
-	void SetTarget(double cord[4], char kind, double speed);
-	MissileInfo GetMissile();
-	TargetInfo GetTarget();
-
-private:
-	Missile missile;
-	Target target;
 };

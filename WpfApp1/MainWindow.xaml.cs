@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CPPWAPPRER;
 
 namespace WpfApp1
 {
@@ -23,21 +22,34 @@ namespace WpfApp1
     {
         public MainWindow()
         {
-            //cHeadControl.add(3, 4);
             InitializeComponent();
-            WindowStyle = WindowStyle.None;
-            ResizeMode = ResizeMode.NoResize;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TargetSet_Click(object sender, RoutedEventArgs e)
         {
-            Window targetScen = new TargetScen();
-            targetScen.Owner = Application.Current.MainWindow;
-            targetScen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            targetScen.ShowDialog();
+
+            Window TargetScenario = new TargetScenario();
+
+            TargetScenario.Owner = Application.Current.MainWindow; // 메인화면 중앙에 팝업창 띄우기
+            TargetScenario.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+            TargetScenario.ShowDialog();
+
         }
 
-        private CHeadControllerWrapper wrapper;
+        private void MissileSet_Click(object sender, RoutedEventArgs e)
+        {
+            Window MissileScenario = new MissileScenario();
 
+            MissileScenario.Owner = Application.Current.MainWindow; // 메인화면 중앙에 팝업창 띄우기
+            MissileScenario.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+            MissileScenario.ShowDialog();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,12 +1,15 @@
-// ScenarioControl.cpp : Á¤Àû ¶óÀÌºê·¯¸®¸¦ À§ÇÑ ÇÔ¼ö¸¦ Á¤ÀÇÇÕ´Ï´Ù.
-//
-#include "pch.h"
-#include "ScenarioSetting.h"
+ï»¿// ScenarioControl.cpp : ì •ì  ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ìœ„í•œ í•¨ìˆ˜ë¥¼ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
-void Missile::SetMissile(double coordinate[2]) {
+#include "pch.h"
+#include "framework.h"
+
+#include "ScenarioControl.h"
+
+void Missile::SetMissile(double coordinate[2], double range) {
 	missileInfo._x = coordinate[0];
 	missileInfo._y = coordinate[1];
+	missileInfo.range = range;
 }
 
 MissileInfo Missile::GetMissile() {
@@ -26,8 +29,8 @@ TargetInfo Target::GetTarget() {
 	return targetInfo;
 }
 
-void ScenarioSetting::SetMissile(double cord[2]) {
-	missile.SetMissile(cord);
+void ScenarioSetting::SetMissile(double cord[2], double range) {
+	missile.SetMissile(cord, range);
 }
 
 void ScenarioSetting::SetTarget(double cord[4], char kind, double speed) {
