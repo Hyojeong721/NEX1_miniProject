@@ -66,6 +66,51 @@
 
             </Grid>
         </Border>
+        <Border BorderBrush="White" BorderThickness="0"  Margin="943,10,10.2,407.4" Background="#FF7C7878" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+            <Grid>
+                <TextBlock x:Name="T_Xcoordinate" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="85" FontSize="18" Margin="18,55,0,0"/>
+                <TextBlock x:Name="T_Ycoordinate" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="18" Margin="157,55,0,0" Text="Y"/>
+                <TextBlock x:Name="TargetGraph" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"><Run Text="Target"/><Run Text=" Graph"/><Run Text=" "/></TextBlock>
+                <TextBlock x:Name="T_Xcoordinate_Copy" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="85" FontSize="18" Margin="18,55,0,0"/>
+
+            </Grid>
+        </Border>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="982,63,0,0" Height="30" SelectionChanged="ComboBox_SelectionChanged">
+            <ListBoxItem Content="X좌표"/>
+            <ListBoxItem Content="Y좌표"/>
+            <ListBoxItem Content="시간"/>
+            <ListBoxItem Content="속도"/>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="1120,63,0,0" Height="30">
+            <ListBoxItem Content="X좌표"/>
+            <ListBoxItem Content="Y좌표"/>
+            <ListBoxItem Content="시간"/>
+            <ListBoxItem Content="속도"/>
+        </ComboBox>
+        <Border BorderBrush="White" BorderThickness="0"  Margin="943,285,10.2,132.4" Background="#FF7C7878" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+            <Grid>
+                <TextBlock x:Name="M_Xcoordinate" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="85" FontSize="18" Margin="18,55,0,0"/>
+                <TextBlock x:Name="M_Ycoordinate" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="18" Margin="157,55,0,0" Text="Y"/>
+                <TextBlock x:Name="MissileGraph" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"><Run Text="Missile"/><Run Text=" Graph"/><Run Text=" "/></TextBlock>
+
+
+            </Grid>
+        </Border>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="982,338,0,0" Height="30" SelectionChanged="ComboBox_SelectionChanged">
+            <ListBoxItem Content="X좌표"/>
+            <ListBoxItem Content="Y좌표"/>
+            <ListBoxItem Content="시간"/>
+            <ListBoxItem Content="속도"/>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="1120,338,0,0" Height="30"/>
+        <Button Content="Start" HorizontalAlignment="Left" Height="43" Margin="943,564,0,0" VerticalAlignment="Top" Width="290" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" RenderTransformOrigin="0,0"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Height="43" Margin="943,617,0,0" VerticalAlignment="Top" Width="290" Background="#FF7C7878" Foreground="White" FontSize="18"/>
 
 
     </Grid>
