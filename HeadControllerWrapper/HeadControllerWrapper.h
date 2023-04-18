@@ -12,14 +12,18 @@ namespace CPPWAPPRER {
 		};
 		~CHeadControllerWrapper() {};
 		void setMissleScenario(double _x, double _y);
-		void setTargetScenario(double _sx, double _sy, double _ex, double _ey, char kind, double speed);
+		void setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed);
 		void getMisslePosition(double& _x, double& _y);
 		void getTargetPosition(double& _x, double& _y);
 		
 		inline int getSimulatorStatus() { return m_headCtrl->getHeadControlStatus(); };
+		inline bool getMissleStatus() { return isMissleSet; };
+		inline bool getTargetStatus() { return isTargetSet; };
 		// TODO: 여기에 이 클래스에 대한 메서드를 추가합니다.
 
 	private:
 		HeadController* m_headCtrl;
+		bool isMissleSet{ false };
+		bool isTargetSet{ false };
 	};
 }

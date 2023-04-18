@@ -13,7 +13,7 @@ MissileInfo Missile::GetMissile() {
 	return missileInfo;
 }
 
-void Target::SetTarget(double coordinate[4], char kind, double speed) {
+void Target::SetTarget(double coordinate[4], int kind, double speed) {
 	targetInfo._sx = coordinate[0];
 	targetInfo._sy = coordinate[1];
 	targetInfo._ex = coordinate[2];
@@ -30,7 +30,7 @@ void ScenarioSetting::SetMissile(double cord[2]) {
 	missile.SetMissile(cord);
 }
 
-void ScenarioSetting::SetTarget(double cord[4], char kind, double speed) {
+void ScenarioSetting::SetTarget(double cord[4], int kind, double speed) {
 	target.SetTarget(cord, kind, speed);
 }
 
