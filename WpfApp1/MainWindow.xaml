@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="700" Width="1250" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="LeftBox" Background="Black">
+
+        <Border x:Name="StateBorder" BorderBrush="White" BorderThickness="0" Background="#FF7C7878" CornerRadius="7" Margin="10,14,993.2,582.4">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+
+            <Grid x:Name="StateGrid" Margin="0,0,10,-0.4">
+                <TextBlock x:Name="StateDisplay"  Foreground="White" HorizontalAlignment="Left" Height="64" TextWrapping="Wrap" Text="State 표시" VerticalAlignment="Top" Width="198" FontWeight="Bold" TextAlignment="Center" FontSize="35" Background="#997C7878" Opacity="0.8" Margin="22,9,0,0"/>
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="White" BorderThickness="0"  Margin="10,103,993.2,371.4" Background="#FF7C7878" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+            <Grid>
+                <Button x:Name="TargetSet" Content="Set" HorizontalAlignment="Left" Height="29" Margin="140,15,0,0" VerticalAlignment="Top" Width="90" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" Click="TargetSet_Click"/>
+
+                <TextBlock x:Name="TargetInfo" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Target" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
+                <TextBlock x:Name="TargetType" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Width="85" FontSize="18" Margin="28,55,0,0"/>
+                <TextBlock x:Name="Velocity" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Velocity" VerticalAlignment="Top" Width="85" FontSize="18" Margin="28,89,0,0"/>
+                <TextBlock x:Name="T_StartPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Start Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="28,123,0,0"/>
+                <TextBlock x:Name="T_FinalPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="28,157,0,0"/>
+
+
+                <TextBlock x:Name="TargetTypeData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="85" FontSize="18" Margin="140,55,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="VelocityData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="85" FontSize="18" Margin="140,89,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="T_StartPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0, 0" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,123,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="T_FinalPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="3, 8" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,157,0,0" TextAlignment="Center"/>
+
+
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="White" BorderThickness="0"  Margin="10,319,993.2,222.4" Background="#FF7C7878" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+
+            <Grid>
+                <TextBlock x:Name="MissileInfo"   Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missle" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
+                <TextBlock x:Name="M_FinalPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="23,68,0,0"/>
+                <TextBlock x:Name="M_FinalPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5, 8" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,68,0,0" TextAlignment="Center"/>
+
+                <Button x:Name="MissileSet" Content="Set" HorizontalAlignment="Left" Height="29" Margin="140,10,0,0" VerticalAlignment="Top" Width="90" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" Click="MissileSet_Click"/>
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="White" BorderThickness="0"  Margin="10,469,993.2,10.4" Background="#FF7C7878" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="White" />
+            </Border.Effect>
+
+            <Grid>
+                <TextBlock x:Name="EventLogTitle"  Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Event Log" VerticalAlignment="Top" Width="129" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
+                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="132" TextWrapping="Wrap" Text="로그 들어와야함" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,49,0,0"/>
+
+            </Grid>
+        </Border>
+
+
     </Grid>
 </Window>
