@@ -49,7 +49,7 @@
             <Grid>
                 <TextBlock x:Name="MissileInfo"   Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missle" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
                 <TextBlock x:Name="M_FinalPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="23,68,0,0"/>
-                <TextBlock x:Name="M_FinalPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5, 8" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,68,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="M_FinalPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,68,0,0" TextAlignment="Center" Text="50000" IsEnabled="False"/>
 
                 <Button x:Name="MissileSet" Content="Set" HorizontalAlignment="Left" Height="29" Margin="140,10,0,0" VerticalAlignment="Top" Width="90" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" Click="MissileSet_Click"/>
             </Grid>
