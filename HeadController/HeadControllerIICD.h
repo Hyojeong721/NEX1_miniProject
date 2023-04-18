@@ -15,7 +15,11 @@ enum class COMM_STATUS : unsigned
 	NON			// 비정상
 };
 
-
+struct CONTROLLER_STATUS
+{
+	HEAD_CONTROLLER_STATUS status{ HEAD_CONTROLLER_STATUS::READY };
+	double tickTime{0.0};
+};
 /// <summary>
 /// 통신 목록
 /// </summary>
@@ -38,13 +42,6 @@ struct TargetInfo {
 	double speed;			// 위협기 속도
 };
 
-// 요격 이벤트 정보
-struct AttackInfo {
-	bool checkAttackAvailable;	// 요격 가능 여부
-	double launchTime;			// 유도탄 발사 시간
-	double attackPoint_x;		// 요격 지점 x 좌표
-	double attackPoint_y;		// 요격 지점 y 좌표
-};
 
 // 모의 결과 수신 정보
 struct State
@@ -56,10 +53,17 @@ struct State
 struct checkSum
 {
 	COMM_STATUS status{COMM_STATUS::NS};		   // 통신상태
-	double tick{0.0};			   //운용통제기 현재 시간
 };
 
 struct attackEventMessge
 {
 	bool isSuccess{ false };		// 성공  / 실패
+};
+
+// 요격 이벤트 정보
+struct AttackInfo {
+	bool checkAttackAvailable;	// 요격 가능 여부
+	double launchTime;			// 유도탄 발사 시간
+	double attackPoint_x;		// 요격 지점 x 좌표
+	double attackPoint_y;		// 요격 지점 y 좌표
 };

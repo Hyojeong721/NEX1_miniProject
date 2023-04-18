@@ -21,12 +21,12 @@ HeadController::HeadController()
 {
 	std::mutex tmp;
 	mutex_ = &tmp;
+	m_udpComm = new UDPcommunication(8080,8081,8082);
 }
 
+// 스타트 버튼 누르면 호출 호출 시 스레드 시작
 void HeadController::starSimulation()
 {
-	m_status = HEAD_CONTROLLER_STATUS::RUN;
-
 	if (!isExcute)
 	{
 		threads.push_back(std::thread(&HeadController::excuteSimTread, this));
@@ -36,11 +36,14 @@ void HeadController::starSimulation()
 	{
 		thread.detach();
 	}
+
+	// 시나리오 설정 상태 확인
+	UICtrlInput = true;
 }
 
 void HeadController::stopSimulation()
 {
-	m_status = HEAD_CONTROLLER_STATUS::END;
+	UICtrlInput = false;
 }
 
 void HeadController::setMissleScenario(double cord[2])
@@ -71,42 +74,80 @@ void HeadController::writeData()
 
 void HeadController::update()
 {
-	updateStatus();
 	if (m_status == HEAD_CONTROLLER_STATUS::READY)
 	{
+		// 시나리오 배포 및 배포 확인(통신으로)
 
+		
+		// 시나리오 설정이 완료되고 start 버튼이 눌린다면 RUN으로 넘어간다.
+
+		// // 0, 상태보내기 (공통)/////////////////////////////////////////////////////////////////////////////////////////////
+		m_udpComm->send_('1', m_status, 0);		// 운용통제기 상태 보내기
+		m_udpComm->send_('1', m_status, 1);		// 운용통제기 상태 보내기
+
+		// 1. 유도탄 시나리오 보내기///////////////////////////////////////////////////////////////////////////////////////////////
+		m_udpComm->send_('3',m_scen.GetMissile(),0);
+
+		// 2. 위협기 시나리오 보내기////////////////////////////////////////////////////////////////////////////////////////
+		m_udpComm->send_('4',m_scen.GetTarget(), 1);
+
+		// 3. 요격 상태정보 계산후 보내기
+		attackInfo = attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget());
+		if (attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget()).checkAttackAvailable == false) // 요격계산 or 탐지 실패한 경우
+		{
+			m_status = HEAD_CONTROLLER_STATUS::END;	// 요격이 안되면 운용상태 종료로 변경
+		}
+		else
+		{
+			m_udpComm->send_('8', attackInfo, 0);
+		}
+
+		if (UICtrlInput)
+		{
+			m_status = HEAD_CONTROLLER_STATUS::RUN;
+		}
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::RUN)
 	{
+		// 운용중 수도코드
+		/*
+		* 0. 타이머 업데이트
+		* 1. 유도탄 정보 받기
+		* 2. 위협기 모의정보 받기
+		* 3. 시간정보 유도탄 전송
+		* 4. 시간정보 위협기 전송
+		* 5. 충돌여부 판단
+		*/
 
+		///  0. 타이머 업데이트 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		m_tickTime += 0.5;
+
+		// 1. 유도탄 정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		m_udpComm->get_data('6', m_missleState, sizeof(m_missleState));
+
+		//  2. 위협기 모의정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		m_udpComm->get_data('6', m_targetState, sizeof(m_targetState));
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
 	{
-
+		/*
+		* 0. 위협기 종료정보 전송
+		* 1. 유도탄 종료정보 전송
+		* 1. 위협기 종료 확인 정보 받기
+		* 2. 유도탄 종료 확인 정보 받기
+		* 3. 종료 여부 확인
+		*/
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::END)
 	{
-
-	}
-}
-
-void HeadController::updateStatus()
-{
-	// 충돌 상태가 될 시 이벤트 처리 상태로 전환
-	if (m_status == HEAD_CONTROLLER_STATUS::RUN && checkDetonation())
-	{
-		m_status = HEAD_CONTROLLER_STATUS::EVENT_CHECK;
-	}
-	else if(m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
-	{
-		//  요격 이벤트 전송
+		/*
+		* 0. 종료 상태 설정 (스레드 종료)
+		*/
 	}
 }
 
 void HeadController::excuteSimTread()
 {
-	attackInfo = attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget());
-
 	while (m_status != HEAD_CONTROLLER_STATUS::END)
 	{
 		update();
