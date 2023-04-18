@@ -1,6 +1,7 @@
 #pragma once
 #include "ScenarioSetting.h"
 #include "AttackEvent.h"
+#include "UDPcommunication.h"
 
 #include <vector>
 #include <thread>
@@ -25,7 +26,6 @@ private:
 	void readData();		// 데이터 읽기
 	void writeData();		// 데이터 쓰기
 	void update();			//상태에 따른 모의기 운영
-	void updateStatus();	// 상태 업데이트
 	void excuteSimTread();	// 시뮬레이션 스레드 수행
 	bool checkDetonation();	// 충돌 여부판단
 private:
@@ -34,11 +34,13 @@ private:
 	HEAD_CONTROLLER_STATUS m_status{ HEAD_CONTROLLER_STATUS::READY };
 	ScenarioSetting m_scen;
 	State m_missleState;
-	State m_targetState;
-
+	State m_targetState;						
+	UDPcommunication* m_udpComm;
+	double m_tickTime{ 0.0 };
 
 	//thread info
 	bool isExcute{ false };
+	bool UICtrlInput{ false };
 	std::vector<std::thread> threads;
 	void* mutex_;
 };
