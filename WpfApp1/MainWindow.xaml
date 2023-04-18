@@ -111,6 +111,11 @@
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="1120,338,0,0" Height="30"/>
         <Button Content="Start" HorizontalAlignment="Left" Height="43" Margin="943,564,0,0" VerticalAlignment="Top" Width="290" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" RenderTransformOrigin="0,0"/>
         <Button Content="Stop" HorizontalAlignment="Left" Height="43" Margin="943,617,0,0" VerticalAlignment="Top" Width="290" Background="#FF7C7878" Foreground="White" FontSize="18"/>
+        <Image x:Name="gridIMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="670" Margin="250,0,0,0" VerticalAlignment="Top" Width="688" MouseDown="getPosition"/>
+        <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="861,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+        <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="861,629,0,0" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+        <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="813,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
+        <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="813,629,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
 
 
     </Grid>
