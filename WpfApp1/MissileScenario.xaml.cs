@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// TargetScenario.xaml에 대한 상호 작용 논리
+    /// MissileScenario.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TargetScenario : Window
+    public partial class MissileScenario : Window
     {
-        public TargetScenario()
+        public MissileScenario()
         {
             InitializeComponent();
         }

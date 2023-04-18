@@ -74,7 +74,7 @@
 
         <Grid x:Name="ScenarioBottomBtnGrid" Margin="10,320,10,3">
             <Button Content="Cancel" HorizontalAlignment="Left" Height="24" Margin="268,10,0,0" VerticalAlignment="Top" Width="66" Background="#FFE72020" FontWeight="Bold" Click="Button_Click"/>
-            <Button Content="Set" HorizontalAlignment="Left" Height="24" Margin="345,10,0,0" VerticalAlignment="Top" Width="66" Background="#FF2121DF" FontWeight="Bold"/>
+            <Button Content="Set" HorizontalAlignment="Left" Height="24" Margin="345,10,0,0" VerticalAlignment="Top" Width="66" Background="#FF2121DF" FontWeight="Bold" Click="Button_Click_1"/>
         </Grid>
 
     </Grid>

@@ -34,5 +34,15 @@ namespace WpfApp1
 
             TargetScenario.ShowDialog();
         }
+
+        private void MissileSet_Click(object sender, RoutedEventArgs e)
+        {
+            Window MissileScenario = new MissileScenario();
+
+            MissileScenario.Owner = Application.Current.MainWindow; // 메인화면 중앙에 팝업창 띄우기
+            MissileScenario.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+            MissileScenario.ShowDialog();
+        }
     }
 }
