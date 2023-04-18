@@ -135,7 +135,7 @@ UDPcommunication::UDPcommunication(int port, int dest_port, int dest_port2) {
 
 
 template<typename T>
-void UDPcommunication::send_(char identification, T data, int dest_num = 0) {
+void UDPcommunication::send_(char identification, T data, int dest_num ) {
 
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
