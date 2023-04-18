@@ -52,5 +52,5 @@ struct checkSum
 
 struct attackEventMessge
 {
-	bool isSuccess{ false };
+	bool isSuccess{ false };		// 성공  / 실패
 };
