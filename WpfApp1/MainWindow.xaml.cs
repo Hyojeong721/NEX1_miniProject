@@ -118,7 +118,7 @@ namespace WpfApp1
 
         }
 
-        private void moveM(object sender, RoutedEventArgs e)
+        private void startBtn_Click(object sender, RoutedEventArgs e)
         {
 
             Thickness marginThickness = testC.Margin;
@@ -133,6 +133,7 @@ namespace WpfApp1
             Wrapper.simulationCtrl.startSimulator();
         }
 
+
         private void stopBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("모의 종료");
@@ -145,6 +146,11 @@ namespace WpfApp1
             //MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
 
 
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("모의 종료");
+            EventLogBox.Text += "모의 종료";
+            Window.GetWindow(this).Close();
         }
     }
 }
