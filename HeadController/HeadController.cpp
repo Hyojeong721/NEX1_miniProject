@@ -29,16 +29,12 @@ void HeadController::starSimulation()
 {
 	if (!isExcute)
 	{
-		threads.push_back(std::thread(&HeadController::excuteSimTread, this));
+		isExcute = true;
+		excuteSimTread();
 	}
 
-	for (auto& thread : threads)
-	{
-		thread.detach();
-	}
-
-	// 시나리오 설정 상태 확인
-	UICtrlInput = true;
+	//// 시나리오 설정 상태 확인
+	//UICtrlInput = true;
 }
 
 void HeadController::stopSimulation()
@@ -95,7 +91,7 @@ void HeadController::update()
 		attackInfo = attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget());
 		if (attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget()).checkAttackAvailable == false) // 요격계산 or 탐지 실패한 경우
 		{
-			m_status = HEAD_CONTROLLER_STATUS::END;	// 요격이 안되면 운용상태 종료로 변경
+			//m_status = HEAD_CONTROLLER_STATUS::END;	// 요격이 안되면 운용상태 종료로 변경
 		}
 		else
 		{
@@ -144,14 +140,23 @@ void HeadController::update()
 		* 0. 종료 상태 설정 (스레드 종료)
 		*/
 	}
+	//if (m_cbf)
+	//{
+	//	m_cbf();
+	//}
 }
 
 void HeadController::excuteSimTread()
 {
-	while (m_status != HEAD_CONTROLLER_STATUS::END)
-	{
-		update();
-	}
+	std::thread t1([&]() {
+		while (m_status != HEAD_CONTROLLER_STATUS::END)
+		{
+			update();
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+		}
+		});
+
+	t1.detach();
 }
 
 bool HeadController::checkDetonation()

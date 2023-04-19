@@ -8,6 +8,10 @@
 #include <memory.h>
 #include <mutex>
 
+// 함수포인터(function pointer) 타입 정의
+typedef void(*CALLBACK_FUNC)(void);
+
+
 class HeadController
 {
 public:
@@ -19,9 +23,15 @@ public:
 	void setMissleScenario(double cord[2]);		// int _sx, int _sy
 	void setTargetScenario(double cord[4], char kind, double speed);
 
-	inline unsigned int getHeadControlStatus() { return static_cast<unsigned int>(m_status); };
+	inline int getHeadControlStatus() { return static_cast<int>(m_status); };
 	inline State getMisslePosition() { return m_missleState; };
 	inline State getTargetPosition() { return m_targetState; };
+
+	// 이벤트 스레드 관련 메서드
+	void SetHandler(CALLBACK_FUNC cli_cb)
+	{
+		m_cbf = cli_cb;
+	}
 private:
 	void readData();		// 데이터 읽기
 	void writeData();		// 데이터 쓰기
@@ -37,6 +47,9 @@ private:
 	State m_targetState;						
 	//UDPcommunication* m_udpComm;
 	double m_tickTime{ 0.0 };
+
+	// callback Pointer
+	CALLBACK_FUNC m_cbf{ nullptr };
 
 	//thread info
 	bool isExcute{ false };
