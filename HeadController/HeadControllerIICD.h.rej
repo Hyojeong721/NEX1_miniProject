@@ -1,9 +1,0 @@
-diff a/HeadController/HeadControllerIICD.h b/HeadController/HeadControllerIICD.h	(rejected hunks)
-@@ -52,5 +52,5 @@
- 
- struct attackEventMessge
- {
--	bool isSuccess{ false };
-+	bool isSuccess{ false };		// ����  / ����
- };
-\ No newline at end of file

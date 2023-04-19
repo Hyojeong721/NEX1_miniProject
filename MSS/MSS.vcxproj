@@ -139,11 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UDPcommunication\UDPcommunication.vcxproj">
-      <Project>{65232ebc-82c0-467b-a3ad-b804758edc24}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MissileController.cpp" />
     <ClCompile Include="MissileModel.cpp" />

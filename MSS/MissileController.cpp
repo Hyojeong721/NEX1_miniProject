@@ -1,22 +1,24 @@
 #include "MissileController.h"
 
+//MissileController.cpp
+
 void MissileController::RecieveScenario() {
 	MissileInfo missileInfoArray[2];
 	AttackInfo msg;
 
 	for (int i = 0; i < 2; i++) {
-		udpCommunication.get_data('3', missileInfoArray[i], sizeof(MissileInfo));
+		udpCommunication.get_data('4', missileInfoArray[i], sizeof(MissileInfo));
 	}
 
 	missileModel.SetMissileInformations(missileInfoArray);
 
-	udpCommunication.get_data('8', msg, sizeof(AttackInfo));
+	udpCommunication.get_data('9', msg, sizeof(AttackInfo));
 	missileModel.SetAttackInfo(msg);
 }
 
 void MissileController::RecieveCommand() {
 	CONTROLLER_STATUS status;
-	udpCommunication.get_data('1', status, sizeof(CONTROLLER_STATUS));
+	udpCommunication.get_data('3', status, sizeof(CONTROLLER_STATUS));
 	missileModel.SetControllerStatus(status);
 
 	//if (status != HEAD_CONTROLLER_STATUS::Trash) {
@@ -26,7 +28,7 @@ void MissileController::RecieveCommand() {
 
 void MissileController::RecieveAttackEvent() {
 	AttackEventMessge msg;
-	udpCommunication.get_data('7', msg, sizeof(AttackEventMessge));
+	udpCommunication.get_data('8', msg, sizeof(AttackEventMessge));
 
 	if (msg.isSuccess == true) {
 		missileModel.StopSimulator();
@@ -40,10 +42,11 @@ void MissileController::SendCommandState() {
 
 void MissileController::SendMissilePosition() {
 	MissileInfo info = missileModel.OutMissilePosition();
-	udpCommunication.send_('3', info, sizeof(MissileInfo));
+	udpCommunication.send_('4', info, sizeof(MissileInfo));
 }
 
 void MissileController::Run() {
+	SendCommandState();
 
 	while (true) {
 		RecieveCommand();

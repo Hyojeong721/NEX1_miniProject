@@ -147,11 +147,6 @@
     <ClInclude Include="TargetController.h" />
     <ClInclude Include="TargetModel.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UDPcommunication\UDPcommunication.vcxproj">
-      <Project>{65232ebc-82c0-467b-a3ad-b804758edc24}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -28,10 +28,11 @@ void TargetController::SendCommandState() {
 
 void TargetController::SendTargetPosition() {
 	State info = targetModel.OutTargetPosition();
-	udpCommunication.send_('5', info, sizeof(State));
+	udpCommunication.send_('6', info, sizeof(State));
 }
 
 void TargetController::Run() {
+	SendCommandState();
 
 	while (true) {
 		RecieveCommand();
