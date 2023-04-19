@@ -87,5 +87,14 @@ namespace WpfApp1
 
         }
 
+        private void moveM(object sender, RoutedEventArgs e)
+        {
+            Thickness marginThickness = testC.Margin;
+        
+            testC.Margin = new Thickness(300);
+            
+          
+           
+        }
     }
 }

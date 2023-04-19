@@ -1,7 +1,7 @@
 #pragma once
 #include "ScenarioSetting.h"
 #include "AttackEvent.h"
-#include "UDPcommunication.h"
+//#include "UDPcommunication.h"
 
 #include <vector>
 #include <thread>
@@ -35,7 +35,7 @@ private:
 	ScenarioSetting m_scen;
 	State m_missleState;
 	State m_targetState;						
-	UDPcommunication* m_udpComm;
+	//UDPcommunication* m_udpComm;
 	double m_tickTime{ 0.0 };
 
 	//thread info

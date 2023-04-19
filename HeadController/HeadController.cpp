@@ -21,7 +21,7 @@ HeadController::HeadController()
 {
 	std::mutex tmp;
 	mutex_ = &tmp;
-	m_udpComm = new UDPcommunication(8080,8081,8082);
+	//m_udpComm = new UDPcommunication(8080,8081,8082);
 }
 
 // 스타트 버튼 누르면 호출 호출 시 스레드 시작
@@ -82,14 +82,14 @@ void HeadController::update()
 		// 시나리오 설정이 완료되고 start 버튼이 눌린다면 RUN으로 넘어간다.
 
 		// // 0, 상태보내기 (공통)/////////////////////////////////////////////////////////////////////////////////////////////
-		m_udpComm->send_('1', m_status, 0);		// 운용통제기 상태 보내기
-		m_udpComm->send_('1', m_status, 1);		// 운용통제기 상태 보내기
+		//m_udpComm->send_('1', m_status, 0);		// 운용통제기 상태 보내기
+		//m_udpComm->send_('1', m_status, 1);		// 운용통제기 상태 보내기
 
 		// 1. 유도탄 시나리오 보내기///////////////////////////////////////////////////////////////////////////////////////////////
-		m_udpComm->send_('3',m_scen.GetMissile(),0);
+		//m_udpComm->send_('3',m_scen.GetMissile(),0);
 
 		// 2. 위협기 시나리오 보내기////////////////////////////////////////////////////////////////////////////////////////
-		m_udpComm->send_('4',m_scen.GetTarget(), 1);
+		//m_udpComm->send_('4',m_scen.GetTarget(), 1);
 
 		// 3. 요격 상태정보 계산후 보내기
 		attackInfo = attackevent.CalculateAttackEvent(m_scen.GetMissile(), m_scen.GetTarget());
@@ -99,7 +99,7 @@ void HeadController::update()
 		}
 		else
 		{
-			m_udpComm->send_('8', attackInfo, 0);
+			//m_udpComm->send_('8', attackInfo, 0);
 		}
 
 		if (UICtrlInput)
@@ -123,10 +123,10 @@ void HeadController::update()
 		m_tickTime += 0.5;
 
 		// 1. 유도탄 정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		m_udpComm->get_data('6', m_missleState, sizeof(m_missleState));
+		//m_udpComm->get_data('6', m_missleState, sizeof(m_missleState));
 
 		//  2. 위협기 모의정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		m_udpComm->get_data('6', m_targetState, sizeof(m_targetState));
+		//m_udpComm->get_data('6', m_targetState, sizeof(m_targetState));
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
 	{
