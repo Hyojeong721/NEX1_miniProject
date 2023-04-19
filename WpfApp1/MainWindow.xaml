@@ -71,8 +71,8 @@
 
             </Grid>
         </Border>
-        <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Height="95" Margin="953,437,0,0" VerticalAlignment="Top" Width="280" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="20" RenderTransformOrigin="0,0" FontWeight="Bold"/>
-        <Button x:Name="stopBtn" Content="Stop" HorizontalAlignment="Left" Height="95" Margin="953,550,0,0" VerticalAlignment="Top" Width="280" Background="#FF7C7878" Foreground="White" FontSize="20" FontWeight="Bold"/>
+        <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Height="95" Margin="953,437,0,0" VerticalAlignment="Top" Width="280" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="20" RenderTransformOrigin="0,0" FontWeight="Bold" Click="startBtn_Click"/>
+        <Button x:Name="stopBtn" Content="Stop" HorizontalAlignment="Left" Height="95" Margin="953,550,0,0" VerticalAlignment="Top" Width="280" Background="#FF7C7878" Foreground="White" FontSize="20" FontWeight="Bold" Click="stopBtn_Click"/>
 
 
         <!--<Image x:Name="gridIMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="268,7,0,-7" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>-->

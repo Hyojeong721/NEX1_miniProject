@@ -2,18 +2,23 @@
 
 #include "HeadControllerWrapper.h"
 
+void CPPWAPPRER::CHeadControllerWrapper::startSimulator()
+{
+	m_headCtrl->starSimulation();
+}
+
 void CPPWAPPRER::CHeadControllerWrapper::setMissleScenario(double _x, double _y)
 {
 	double cord[2] = { _x,_y };
 	m_headCtrl->setMissleScenario(cord);
-	isTargetSet = true;
+	isMissleSet = true;
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed)
 {
 	double cord[4] = { _sx,_sy,_ex,_ey };
 	m_headCtrl->setTargetScenario(cord, kind, speed);
-	isMissleSet = true;
+	isTargetSet = true;
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::getMisslePosition(double& _x, double& _y)
