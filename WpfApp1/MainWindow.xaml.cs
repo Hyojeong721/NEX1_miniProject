@@ -118,13 +118,6 @@ namespace WpfApp1
 
         }
 
-        private void moveM(object sender, RoutedEventArgs e)
-        {
-            Thickness marginThickness = testC.Margin;
-        
-            testC.Margin = new Thickness(300);
-        }
-
         private void startBtn_Click(object sender, RoutedEventArgs e)
         {
             EventLogBox.Text += "시뮬레이션 시작";
