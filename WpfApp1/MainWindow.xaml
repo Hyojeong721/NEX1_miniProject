@@ -33,9 +33,14 @@
 
 
                 <TextBlock x:Name="TargetTypeData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="133" FontSize="18" Margin="101,61,0,0" TextAlignment="Center"/>
-                <TextBlock x:Name="VelocityData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="133" FontSize="18" Margin="101,99,0,0" TextAlignment="Center"/>
-                <TextBlock x:Name="T_StartPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0, 0" VerticalAlignment="Top" Width="133" FontSize="18" Margin="101,135,0,0" TextAlignment="Center" IsEnabled="False"/>
-                <TextBlock x:Name="T_FinalPointData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="200000, 200000" VerticalAlignment="Top" Width="133" FontSize="18" Margin="101,171,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="VelocityData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="91" FontSize="18" Margin="101,99,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="VelocityUnit" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="mach" VerticalAlignment="Top" Width="91" FontSize="18" Margin="149,99,0,0" TextAlignment="Center"/>
+
+                <TextBlock x:Name="T_StartPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="66" FontSize="18" Margin="101,135,0,0" TextAlignment="Center" IsEnabled="False"/>
+                <TextBlock x:Name="T_StartPointData_Y" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="67" FontSize="18" Margin="167,135,0,0" TextAlignment="Center" IsEnabled="False"/>
+
+                <TextBlock x:Name="T_FinalPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="67" FontSize="18" Margin="167,171,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="T_FinalPointData_Y" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="66" FontSize="18" Margin="101,171,0,0" TextAlignment="Center"/>
 
 
             </Grid>
@@ -48,8 +53,9 @@
 
             <Grid>
                 <TextBlock x:Name="MissileInfo"   Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missle" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
-                <TextBlock x:Name="M_FinalPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="23,68,0,0"/>
-                <TextBlock x:Name="M_FinalPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="18" Margin="140,68,0,0" TextAlignment="Center" Text="50000" IsEnabled="False"/>
+                <TextBlock x:Name="M_StartPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Start Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="13,68,0,0"/>
+                <TextBlock x:Name="M_StartPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="18" Margin="172,68,0,0" TextAlignment="Center" Text="0" IsEnabled="False"/>
+                <TextBlock x:Name="M_StartPointData_Y" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="18" Margin="112,68,0,0" TextAlignment="Center" Text="0" IsEnabled="False"/>
 
                 <Button x:Name="MissileSet" Content="Set" HorizontalAlignment="Left" Height="40" Margin="13,123,0,0" VerticalAlignment="Top" Width="210" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="18" Click="MissileSet_Click"/>
             </Grid>
@@ -63,23 +69,47 @@
             <Grid>
                 <TextBlock x:Name="EventLogTitle"  Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Event Log" VerticalAlignment="Top" Width="129" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
 
-                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="132" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,49,0,0"/>
+                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="303" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,49,0,0"/>
 
             </Grid>
         </Border>
-        <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Height="95" Margin="953,437,0,0" VerticalAlignment="Top" Width="280" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="20" RenderTransformOrigin="0,0" FontWeight="Bold"/>
-        <Button x:Name="stopBtn" Content="Stop" HorizontalAlignment="Left" Height="95" Margin="953,550,0,0" VerticalAlignment="Top" Width="280" Background="#FF7C7878" Foreground="White" FontSize="20" FontWeight="Bold"/>
-        
-        
-        <Image x:Name="gridIMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="268,7,0,-7" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
-        
-       
-        
-        <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="861,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
-        <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="861,629,0,0" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
-        <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="813,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
-        <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="813,629,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+        <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Height="95" Margin="953,437,0,0" VerticalAlignment="Top" Width="280" Background="#FF463B3B" Foreground="White" BorderBrush="#FF463B3B" FontSize="20" RenderTransformOrigin="0,0" FontWeight="Bold" Click="startBtn_Click"/>
+        <Button x:Name="stopBtn" Content="Stop" HorizontalAlignment="Left" Height="95" Margin="953,550,0,0" VerticalAlignment="Top" Width="280" Background="#FF7C7878" Foreground="White" FontSize="20" FontWeight="Bold" Click="StopBtn_Click"/>
 
 
+        <!--<Image x:Name="gridIMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="268,7,0,-7" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>-->
+
+
+
+
+        <Grid x:Name="imgGrid"  Margin="256,7,297,-27" Height="690" Width="690">
+            <Image x:Name="IMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="654" Margin="8,-4,0,0" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
+            <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="573,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="-3.02,0.613"/>
+            <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="573,624,0,-0.6" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+            <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="537,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
+            <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="537,624,0,-0.6" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+
+            <Canvas x:Name="MissileCanvas" Margin="134,3.5,148, 5" Height="350" Width="350"  RenderTransformOrigin="0.5,0.537">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.001"/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5"/>
+                <Ellipse Width="20" Height="20" Fill="red" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42"  />
+            </Canvas>
+            <Button x:Name="testbtn" Content="Button" HorizontalAlignment="Left" Height="48" Margin="561,501,0,0" VerticalAlignment="Top" Width="83"/>
+
+            <TextBlock x:Name="targetStart" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
+            <TextBlock x:Name="targetFinal" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
+
+            <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3"/>
+            <Ellipse x:Name="currentTarget" Width="20" Height="20" Fill="white" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42" Margin="137,374,523,286"  />
+
+        </Grid>
+        
     </Grid>
 </Window>
