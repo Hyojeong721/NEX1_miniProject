@@ -35,20 +35,15 @@ namespace CPPWAPPRER {
 	public:
 		// 이벤트 델리게이트 선언
 		delegate void MyEventHandler(String^ message);
-		delegate void CbHandler(int a);
+		delegate void CbHandler();
 		// 이벤트 선언
 		event MyEventHandler^ MyEvent;
 
 		// C++ 에 핸들러로 등록되어있어서,
 		// C++ 에서 뭔가 발생하면 이 메소드가 자동으로 수행됨
-		void onRecv(int a)
+		void onRecv()
 		{
-			// C++ 로 부터 넘겨받은 데이터
-			// 추가적으로 처리 수행
-			int data = a + 1;
-
-			// C# 이벤트 발생 시키기
-			MyEvent("hello " + data.ToString());
+			MyEvent("Hello");
 		}
 	private:
 		GCHandle gch;

@@ -9,7 +9,7 @@
 #include <mutex>
 
 // 함수포인터(function pointer) 타입 정의
-typedef void(*CALLBACK_FUNC)(void);
+typedef void(*CALLBACK_FUNC)();
 
 
 class HeadController
