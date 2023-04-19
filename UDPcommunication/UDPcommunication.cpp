@@ -5,6 +5,31 @@
 #include "framework.h"
 #include "UDPcommunication.h"
 // TODO: 라이브러리 함수의 예제입니다.
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#include <WinSock2.h>
+#include<thread>
+#include<queue>
+#include<string>
+using namespace std;
+
+#pragma comment(lib, "ws2_32.lib")
+
+
+#define PACKET_LENGTH    1024
+
+SOCKET hSocket;
+SOCKADDR_IN tDestAddr[2];
+SOCKADDR_IN rcv_DestAddr;
+char recv_Packet[PACKET_LENGTH] = {};
+char send_Packet[PACKET_LENGTH] = {};
+
+
+
+queue<char*>buffer[10];
+
+int iDestLength[2];
+
 void fnUDPcommunication()
 {
 }
@@ -91,7 +116,7 @@ void UDPcommunication::recv_() {
 		buffer[8].push(recv_Packet);
 	}
 
-	cout << recv_Packet << endl;
+	
 
 
 
