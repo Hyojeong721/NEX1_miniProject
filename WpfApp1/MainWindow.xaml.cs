@@ -82,10 +82,14 @@ namespace WpfApp1
                     }
                     ty = 620 - ty;
                     currentTarget.Margin = new System.Windows.Thickness { Left = tx, Top = ty, Right = 0, Bottom = 0 };
+                    
                     // 현재 유도탄 위치 GUI
-                  
                     double mx = 0.0;
                     double my = 0.0;
+                    string strmx = mx.ToString();
+                    string strmy = my.ToString();
+                    outputboxX.Text = strmx;
+                    outputboxY.Text = strmy;
 
                     unsafe
                     {
@@ -207,9 +211,11 @@ namespace WpfApp1
                 }
                 string strX = x.ToString();
                 string strY = y.ToString();
-
+                outputboxX.Text = strX;
+                outputboxY.Text = strY;
                 M_StartPointData_X.Text = strX;
                 M_StartPointData_Y.Text = strY;
+
                 // 유도탄 초기 설정값으로 위치 이동
                 x = x-160;
                 y = 475-y;
