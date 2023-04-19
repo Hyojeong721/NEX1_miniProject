@@ -6,6 +6,10 @@ void MissileModel::SetMissileInformations(MissileInfo missileInfo[2]) {
 	goal = missileInfo[1];
 }
 
+void MissileModel::SetAttackInfo(AttackInfo msg) {
+	attackEventMessage = msg;
+}
+
 void MissileModel::SetControllerStatus(HEAD_CONTROLLER_STATUS status) {
 	controllerStatus = status;
 }
@@ -47,7 +51,14 @@ MissileInfo MissileModel::UpdatePosition(double time)
 
 MissileInfo MissileModel::OutMissilePosition(double time)
 {
-	return UpdatePosition(time);
+	if (time < attackEventMessage.launchTime)
+		return { init._x, init._y } ; // 발사이전에는 초기 위치를 리턴함
+	else
+		return UpdatePosition(time - attackEventMessage.launchTime);
+}
+
+HEAD_CONTROLLER_STATUS MissileModel::GetControllerStatus() {
+	return controllerStatus;
 }
 
 

@@ -6,7 +6,8 @@ enum class HEAD_CONTROLLER_STATUS : unsigned int
 	READY = 0U,      //운용준비상태
 	RUN,          //운용중 상태
 	EVENT_CHECK,   //요격확인 상태
-	END            //운용종료 상태
+	END,            //운용종료 상태
+	Trash
 };
 
 //2.
@@ -22,20 +23,14 @@ enum class COMM_STATUS : unsigned
 /// 통신 목록
 /// </summary>
 
-//3.
-struct CommStruct
-{
-	char* data;
-};
-
 // 유도탄 시나리오
-//4.
+//3.
 struct MissileInfo {
 	double _x, _y;          // 발사점
 };
 
 // 공중 위협기 시나리오 정보 
-//5.
+//4.
 struct TargetInfo {
 	double _sx, _sy;      // 발사점
 	double _ex, _ey;      // 탄착점
@@ -44,22 +39,31 @@ struct TargetInfo {
 };
 
 // 모의 결과 수신 정보
-//6.
+//5.
 struct State
 {
 	double position[2]{ 0, };      //      
 };
 
 // 통신 확인 (송/수신)
-//7.
+//6.
 struct CheckSum
 {
 	COMM_STATUS status{ COMM_STATUS::NS };         // 통신상태
 	double tick{ 0.0 };            //운용통제기 현재 시간
 };
 
-//8.
+//7.
 struct AttackEventMessge
 {
 	bool isSuccess{ false };      // 성공  / 실패
+};
+
+// 요격 이벤트 정보
+// 8.
+struct AttackInfo {
+	bool checkAttackAvailable;   // 요격 가능 여부
+	double launchTime;         // 유도탄 발사 시간
+	double attackPoint_x;      // 요격 지점 x 좌표
+	double attackPoint_y;      // 요격 지점 y 좌표
 };

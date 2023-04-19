@@ -153,6 +153,8 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="TargetController.h" />
+    <ClInclude Include="TargetModelInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -161,7 +163,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TargetController.cpp" />
+    <ClCompile Include="TargetModelInterface.cpp" />
     <ClCompile Include="TargetScenario.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScenarioControl\ScenarioControl.vcxproj">
+      <Project>{47b9dc5c-9603-4e2c-b1d3-7afe1a5437b0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UDPcommunication\UDPcommunication.vcxproj">
+      <Project>{65232ebc-82c0-467b-a3ad-b804758edc24}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
