@@ -108,9 +108,11 @@ namespace WpfApp1
                 T_FinalPointData_Y.Text = strEY;
                 VelocityData.Text = strSpeed;
                 TargetTypeData.Text = strKind;
-                
+
+
                 sy = 620 - sy;
                 ey = 620 - ey;
+                currentTarget.Margin = new System.Windows.Thickness { Left = sx, Top = sy, Right = 0, Bottom = 0 };
 
                 // 공중위협 초기 설정값으로 위치 이동
                 targetStartPoint.Margin = new System.Windows.Thickness { Left = sx, Top = sy, Right = 0, Bottom = 0 };
@@ -151,8 +153,10 @@ namespace WpfApp1
                 M_StartPointData_X.Text = strX;
                 M_StartPointData_Y.Text = strY;
                 // 유도탄 초기 설정값으로 위치 이동 /// 값 수정해야함!!!
-                y = 620 - y;
-                MissileCanvas.Margin = new System.Windows.Thickness { Left = y, Top = x, Right = 0, Bottom = 0 };
+                x = x-160;
+                y = 475-y;
+
+                MissileCanvas.Margin = new System.Windows.Thickness { Left = x, Top = y, Right = 0, Bottom = 0 };
             }
         }
         

@@ -69,7 +69,7 @@
             <Grid>
                 <TextBlock x:Name="EventLogTitle"  Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Event Log" VerticalAlignment="Top" Width="129" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
 
-                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="303" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" FontWeight="Bold" Margin="10,49,0,0"/>
+                <TextBlock x:Name="EventLogBox" HorizontalAlignment="Left" Height="285" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="246" FontWeight="Bold" Margin="10,67,0,0"/>
 
             </Grid>
         </Border>
@@ -82,34 +82,27 @@
 
 
 
-        <Grid x:Name="imgGrid"  Margin="256,7,297,-27" Height="690" Width="690">
+        <Grid x:Name="imgGrid"  Margin="256,7,297,0" Width="690">
+
             <Image x:Name="IMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="654" Margin="8,-4,0,0" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
-            <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="573,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="-3.02,0.613"/>
-            <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="573,624,0,-0.6" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
-            <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="537,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
-            <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="537,624,0,-0.6" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+            <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="609,571,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="-3.02,0.613"/>
+            <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="609,606,0,0" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
+            <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="573,571,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
+            <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="573,606,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
 
-            <Canvas x:Name="MissileCanvas" Margin="134,3.5,148, 5" Height="350" Width="350"  RenderTransformOrigin="0.5,0.537">
-                <Canvas.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.001"/>
-                    </TransformGroup>
-                </Canvas.RenderTransform>
-                <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5"/>
-                <Ellipse Width="20" Height="20" Fill="red" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42"  />
+            <Canvas x:Name="MissileCanvas" Margin="320,300,20,10.4">
+                <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5" />
+                <TextBlock x:Name="currentMissile" TextWrapping="Wrap" Text="●" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="red" Height="40" Width="40" Canvas.Left="150" Canvas.Top="150" />
             </Canvas>
-            <Button x:Name="testbtn" Content="Button" HorizontalAlignment="Left" Height="48" Margin="561,501,0,0" VerticalAlignment="Top" Width="83"/>
+            
 
-            <TextBlock x:Name="targetStartPoint" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
-            <TextBlock x:Name="targetFinalPoint" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
+            <TextBlock x:Name="targetStartPoint" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
+            <TextBlock x:Name="targetFinalPoint" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
+            <TextBlock x:Name="currentTarget" HorizontalAlignment="Left" Margin="80,400,0, 0" TextWrapping="Wrap" Text="●" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="40"/>
 
-            <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3"/>
-            <Ellipse x:Name="currentTarget" Width="20" Height="20" Fill="white" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42" Margin="137,374,523,286"  />
+            <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3" Grid.RowSpan="2" Margin="0,0,0,-0.4"/>
 
         </Grid>
-        
+
     </Grid>
 </Window>

@@ -63,7 +63,7 @@ void HeadController::readData()
 void HeadController::writeStatusData()
 {
 	//객체가 소멸시에 unlock 되는 특성을 가지고 있습니다.
-	std::lock_guard<std::mutex> lg{ *(std::mutex *)mutex_ };
+	//std::lock_guard<std::mutex> lg{ *(std::mutex *)mutex_ };
 	
 	// 통신으로 데이터 보내기 구현
 	CONTROLLER_STATUS trans;

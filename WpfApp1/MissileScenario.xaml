@@ -25,7 +25,7 @@
 
                 </Grid>
             </Border>
-            <TextBlock x:Name="MissileFinalTitle" Foreground="White" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="Final Point" VerticalAlignment="Top" Width="90" FontWeight="Bold" FontSize="15" Margin="135,48,0,0"/>
+            <TextBlock x:Name="MissileStartTitle" Foreground="White" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="Start Point" VerticalAlignment="Top" Width="90" FontWeight="Bold" FontSize="15" Margin="135,48,0,0"/>
         </Grid>
 
 
