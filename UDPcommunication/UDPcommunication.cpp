@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "UDPcommunication.h"
+
 // TODO: 라이브러리 함수의 예제입니다.
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
@@ -115,6 +116,9 @@ void UDPcommunication::recv_() {
 	else if (recv_Packet[0] == '8') {
 		buffer[8].push(recv_Packet);
 	}
+	else if (recv_Packet[0] == '9') {
+		buffer[9].push(recv_Packet);
+	}
 
 	
 
@@ -159,8 +163,9 @@ UDPcommunication::UDPcommunication(int port, int dest_port, int dest_port2) {
 }
 
 
-template<typename T>
-void UDPcommunication::send_(char identification, T data, int dest_num ) {
+//template<typename T>
+
+void UDPcommunication::send_(char identification, HEAD_CONTROLLER_STATUS data, int dest_num ) {
 
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
@@ -168,8 +173,138 @@ void UDPcommunication::send_(char identification, T data, int dest_num ) {
 	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
-template<typename T>
-void UDPcommunication::get_data(char identification, T& data, int struct_size) {
+void UDPcommunication::send_(char identification, COMM_STATUS data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, CONTROLLER_STATUS data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, MissileInfo data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, TargetInfo data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, State data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, checkSum data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, attackEventMessge data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+void UDPcommunication::send_(char identification, AttackInfo data, int dest_num) {
+
+	memset(send_Packet, 0, PACKET_LENGTH);
+	messageTobyte(identification, data);
+
+	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+
+}
+
+
+//template<typename T>
+void UDPcommunication::get_data(char identification, HEAD_CONTROLLER_STATUS& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, COMM_STATUS& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, CONTROLLER_STATUS& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, MissileInfo& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, TargetInfo& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, State& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, checkSum& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, attackEventMessge& data, int struct_size) {
+	int idx = identification - '0';
+	if (!buffer[idx].empty()) {
+
+		memcpy(&data, buffer[idx].front() + 1, struct_size);
+		buffer[idx].pop();
+	}
+}
+void UDPcommunication::get_data(char identification, AttackInfo& data, int struct_size) {
 	int idx = identification - '0';
 	if (!buffer[idx].empty()) {
 
