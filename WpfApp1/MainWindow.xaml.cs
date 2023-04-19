@@ -126,17 +126,17 @@ namespace WpfApp1
         }
 
 
-        private void stopBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("모의 종료");
-            EventLogBox.Text += "모의 종료";
-            Window.GetWindow(this).Close();
+        //private void stopBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show("모의 종료");
+        //    EventLogBox.Text += "모의 종료";
+        //    Window.GetWindow(this).Close();
 
-            //Thickness marginThickness = MissleCanvas.Margin;
-            //MissleCanvas.Margin = new Thickness(300);
-            //유도탄 위치 바꿀때 쓰면 됩니다. (a,b) 이동시 x -> x+a , y -> y-b
-            //MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
-
+        //    //Thickness marginThickness = MissleCanvas.Margin;
+        //    //MissleCanvas.Margin = new Thickness(300);
+        //    //유도탄 위치 바꿀때 쓰면 됩니다. (a,b) 이동시 x -> x+a , y -> y-b
+        //    //MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
+        //}
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)
         {

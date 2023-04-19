@@ -31,7 +31,7 @@
                     <TextBlock x:Name="TargetVeolocityInfo1" Foreground="White" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Margin="12,15,0,0" FontSize="14"><Run Text="Aircraft. 0.1 ~ 1 mach"/><LineBreak/><Run/></TextBlock>
                     <TextBlock x:Name="TargetVeolocityInfo2" Foreground="White" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Margin="12,38,0,0" FontSize="14"><Run Text="missile. 1 ~ 10 mach"/><LineBreak/><Run/></TextBlock>
                     <TextBlock x:Name="TargetVeolocityData" Foreground="White" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" Margin="121,88,0,0" FontSize="14"><Run Text="mach"/><LineBreak/><Run/></TextBlock>
-                    <TextBox  x:Name="TargetVel" HorizontalAlignment="Left" Height="23" Margin="10,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="106" Background= "#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
+                    <TextBox  x:Name="TargetVel" HorizontalAlignment="Left" Height="23" Margin="10,88,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="106" Background= "#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
                 </Grid>
             </Border>
 
@@ -41,10 +41,10 @@
                 </Border.Effect>
                 <Grid Margin="0,29,0,20.2">
                     <TextBox HorizontalAlignment="Left" Height="26" Margin="16,4,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="39" Background="{x:Null}" TextAlignment="Center"/>
-                    <TextBox x:Name="TargetStartPoint_X_Set" HorizontalAlignment="Left" Height="26" Margin="60,4,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
+                    <TextBox x:Name="TargetStartPoint_X_Set" HorizontalAlignment="Left" Height="26" Margin="60,4,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
                     
                     <TextBox HorizontalAlignment="Left" Height="26" Margin="16,44,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="39" Background="{x:Null}" TextAlignment="Center"/>
-                    <TextBox x:Name="TargetStartPoint_Y_Set" HorizontalAlignment="Left" Height="26" Margin="60,44,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
+                    <TextBox x:Name="TargetStartPoint_Y_Set" HorizontalAlignment="Left" Height="26" Margin="60,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
                 </Grid>
 
             </Border>
@@ -57,10 +57,10 @@
 
                 <Grid Margin="0,29,0,20.2">
                     <TextBox HorizontalAlignment="Left" Height="26" Margin="16,4,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="39" Background="{x:Null}" TextAlignment="Center"/>
-                    <TextBox x:Name="TargetFinalPoint_X_Set" HorizontalAlignment="Left" Height="26" Margin="60,4,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
+                    <TextBox x:Name="TargetFinalPoint_X_Set" HorizontalAlignment="Left" Height="26" Margin="60,4,0,0" TextWrapping="Wrap" Text="650" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
 
                     <TextBox HorizontalAlignment="Left" Height="26" Margin="16,44,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="39" Background="{x:Null}" TextAlignment="Center"/>
-                    <TextBox x:Name="TargetFinalPoint_Y_Set" HorizontalAlignment="Left" Height="26" Margin="60,44,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
+                    <TextBox x:Name="TargetFinalPoint_Y_Set" HorizontalAlignment="Left" Height="26" Margin="60,44,0,0" TextWrapping="Wrap" Text="650" VerticalAlignment="Top" Width="105" Background="#FF7C7878" TextAlignment="Center" RenderTransformOrigin="-0.291,0.605"/>
 
                 </Grid>
             </Border>
