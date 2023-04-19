@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TargetController.h"
 
 void TargetController::RecieveScenario() {

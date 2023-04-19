@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "MissileController.h"
 
 void MissileController::RecieveScenario() {

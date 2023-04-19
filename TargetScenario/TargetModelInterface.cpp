@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TargetModelInterface.h"
 
 void TargetModel::SetTargetInformations(TargetInfo targetInfo) {

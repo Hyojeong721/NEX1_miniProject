@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "MissileModel.h"
-
 
 void MissileModel::SetMissileInformations(MissileInfo missileInfo[2]) {
 	init = missileInfo[0];
