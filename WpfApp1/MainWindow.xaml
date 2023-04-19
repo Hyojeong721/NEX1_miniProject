@@ -80,14 +80,14 @@
 
 
 
-        <Grid  Margin="268,7,295,10">
-            <Image x:Name="gridIMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="-8,0,0,-26.6" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
+        <Grid x:Name="imgGrid"  Margin="256,7,297,-27" Height="690" Width="690">
+            <Image x:Name="IMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="8,0,0,0" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
             <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="573,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="-3.02,0.613"/>
             <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="573,624,0,-0.6" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
             <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="537,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
             <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="537,624,0,-0.6" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
 
-            <Canvas x:Name="testC" Margin="61,235,271.2,67.4" RenderTransformOrigin="0.5,0.537">
+            <Canvas x:Name="MissleCanvas" Margin="134,3.5,148, 5" Height="350" Width="350"  RenderTransformOrigin="0.5,0.537">
                 <Canvas.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -97,7 +97,7 @@
                     </TransformGroup>
                 </Canvas.RenderTransform>
                 <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5"/>
-                <Ellipse Width="20" Height="20" Fill="White" Canvas.Left="182" Canvas.Top="200" RenderTransformOrigin="3.54,3.56" />
+                <Ellipse Width="20" Height="20" Fill="White" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42"  />
             </Canvas>
             <Button x:Name="testbtn" Content="Button" HorizontalAlignment="Left" Height="48" Margin="561,501,0,0" VerticalAlignment="Top" Width="83" Click="moveM"/>
         </Grid>
