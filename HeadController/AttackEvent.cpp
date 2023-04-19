@@ -14,7 +14,10 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 	//  3. 탐지 가능 여부 확인
 	attackinfo.checkAttackAvailable = CheckAttackAvailable();
 	if (attackinfo.checkAttackAvailable == false)
+	{
 		return attackinfo;				// 탐지가 불가능 하면 종료 -> attackinfo에 false 저장
+	}
+		
 	//------------------------------------------------
 	// 4. 요격 위치, 시간 계산
 	//---------------------------------
@@ -67,8 +70,10 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 			break;
 	}
 	if (endflag == false) {	// 요격 가능 지점을 찾지 못한 경우
-		attackinfo.checkAttackAvailable = false;
-		return attackinfo;	// 탐지는 하였으나 요격이 불가능한 경우
+		{
+			attackinfo.checkAttackAvailable = false;
+			return attackinfo;				// 탐지가 불가능 하면 종료 -> attackinfo에 false 저장
+		}
 	}
 	//---------------------------------
 	// 4.3 유도탄 발사 시간 계산

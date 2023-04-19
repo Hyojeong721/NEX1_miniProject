@@ -71,5 +71,21 @@ namespace WpfApp1
 
         }
 
+
+        private void getPosition(object sender, MouseButtonEventArgs e)
+        {
+            Point pos = e.GetPosition((IInputElement)sender);
+
+            int positionX = (int)pos.X;
+            int positionY = (int)pos.Y;
+
+            string strX = positionX.ToString();
+            string strY = positionY.ToString();
+
+            outputboxX.Text = strX;
+            outputboxY.Text = strY;
+
+        }
+
     }
 }

@@ -8,6 +8,8 @@ class AttackEvent
 public:
 	AttackEvent() {};
 	~AttackEvent() {};
+	AttackInfo CalculateAttackEvent();
+//private:
 	AttackInfo CalculateAttackEvent(MissileInfo missileinfo, TargetInfo targetInfo);
 private:
 	void SettingParameters(MissileInfo missileinfo, TargetInfo targetInfo);
