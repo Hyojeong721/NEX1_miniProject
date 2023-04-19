@@ -32,7 +32,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             
-            //StateDisplay.Text = "잉";
+            StateDisplay.Text = "잉";
             Wrapper.simulationCtrl.MyEvent += new CHeadControllerWrapper.MyEventHandler(doAction);
         }
 
@@ -144,7 +144,6 @@ namespace WpfApp1
         {
             MessageBox.Show("모의 종료");
             EventLogBox.Text += "모의 종료";
-            Window.GetWindow(this).Close();
         }
     }
 }
