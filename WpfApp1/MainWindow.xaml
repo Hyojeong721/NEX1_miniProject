@@ -97,9 +97,18 @@
                     </TransformGroup>
                 </Canvas.RenderTransform>
                 <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5"/>
-                <Ellipse Width="20" Height="20" Fill="White" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42"  />
+                <Ellipse Width="20" Height="20" Fill="red" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42"  />
             </Canvas>
             <Button x:Name="testbtn" Content="Button" HorizontalAlignment="Left" Height="48" Margin="561,501,0,0" VerticalAlignment="Top" Width="83" Click="moveM"/>
+
+            <TextBlock x:Name="targetStart" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
+            <TextBlock x:Name="targetFinal" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White"/>
+
+            <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3"/>
+            <Ellipse x:Name="currentTarget" Width="20" Height="20" Fill="white" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42" Margin="137,374,523,286"  />
+
+
+
         </Grid>
 
         <!--여기부터 테스트-->
