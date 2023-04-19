@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using CPPWAPPRER;
 
 namespace WpfApp1
@@ -30,6 +31,36 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            
+            StateDisplay.Text = "상태";
+            Wrapper.simulationCtrl.MyEvent += new CHeadControllerWrapper.MyEventHandler(doAction);
+        }
+
+        public void doAction(string message)
+        {
+            // 다른 스레드에서 UI 스레드로 작업 요청
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(
+            delegate
+            {
+                // 사용할 메서드 및 동작을 여기 기입
+                int status = Wrapper.simulationCtrl.getSimulatorStatus();
+                if (status == 0)
+                {
+                    StateDisplay.Text = "운용 준비 상태";
+                }
+                else if (status == 1)
+                {
+                    StateDisplay.Text = "운용중 상태";
+                }
+                else if (status == 2)
+                {
+                    StateDisplay.Text = "요격확인 상태";
+                }
+                else if (status == 3)
+                {
+                    StateDisplay.Text = "운용종료 상태";
+                }
+            }));
         }
 
         private void TargetSet_Click(object sender, RoutedEventArgs e)
@@ -45,6 +76,42 @@ namespace WpfApp1
             {
                 EventLogBox.Text += "위협기 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
+
+                double sx = 0.0;
+                double sy = 0.0;
+                double ex = 0.0;
+                double ey = 0.0;
+                int kind = 0;
+                double speed = 0.0;
+                string strKind = "";
+                unsafe
+                {
+                    Wrapper.simulationCtrl.getTargetScenario(&sx, &sy, &ex, &ey, &kind, &speed);
+                }
+                string strSX = sx.ToString();
+                string strSY = sy.ToString();
+                string strEX = ex.ToString();
+                string strEY = ey.ToString();
+
+                if(kind == 1)
+                {
+                    strKind = "Aircraft";
+                }
+                else
+                {
+                    strKind = "Missile";
+                }
+                
+                string strSpeed = speed.ToString();
+
+                T_StartPointData_X.Text = strSX;
+                T_StartPointData_Y.Text = strSY;
+                T_FinalPointData_X.Text = strEX;
+                T_FinalPointData_Y.Text = strEY;
+                VelocityData.Text = strSpeed;
+                TargetTypeData.Text = strKind;
+
+
             }
         }
 
@@ -87,5 +154,32 @@ namespace WpfApp1
 
         }
 
+        private void startBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EventLogBox.Text += "시뮬레이션 시작";
+            EventLogBox.Text += "\n";
+            Wrapper.simulationCtrl.startSimulator();
+        }
+
+
+
+        private void StopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("모의 종료");
+            EventLogBox.Text += "모의 종료";
+            Window.GetWindow(this).Close();
+
+            //Thickness marginThickness = MissleCanvas.Margin;
+            //MissleCanvas.Margin = new Thickness(300);
+            //유도탄 위치 바꿀때 쓰면 됩니다. (a,b) 이동시 x -> x+a , y -> y-b
+            //MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
+        }
+
+
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("모의 종료");
+            EventLogBox.Text += "모의 종료";
+        }
     }
 }
