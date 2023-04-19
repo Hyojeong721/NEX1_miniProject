@@ -21,7 +21,7 @@ HeadController::HeadController()
 {
 	std::mutex tmp;
 	mutex_ = &tmp;
-	//m_udpComm = new UDPcommunication(8080,8081,8082);
+	m_udpComm = new UDPcommunication(8080,8081,8082);
 }
 
 // 스타트 버튼 누르면 호출 호출 시 스레드 시작
@@ -68,8 +68,8 @@ void HeadController::writeStatusData()
 	// 통신으로 데이터 보내기 구현
 	CONTROLLER_STATUS trans;
 	trans = { m_status,m_tickTime };
-	m_udpComm->send_('1', trans, 0);		// 운용통제기 상태 보내기
-	m_udpComm->send_('1', trans, 1);		// 운용통제기 상태 보내기
+	//m_udpComm->send_('1', trans, 0);		// 운용통제기 상태 보내기
+	//m_udpComm->send_('1', trans, 1);		// 운용통제기 상태 보내기
 }
 
 void HeadController::update()

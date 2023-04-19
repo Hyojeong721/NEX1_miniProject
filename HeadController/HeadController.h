@@ -1,12 +1,12 @@
 #pragma once
 #include "ScenarioSetting.h"
 #include "AttackEvent.h"
-//#include "UDPcommunication.h"
 
 #include <vector>
 #include <thread>
 #include <memory.h>
 #include <mutex>
+#include "../UDPcommunication/UDPcommunication.h"
 
 // 함수포인터(function pointer) 타입 정의
 typedef void(*CALLBACK_FUNC)();
@@ -47,7 +47,7 @@ private:
 	ScenarioSetting m_scen;
 	State m_missleState;
 	State m_targetState;						
-	//UDPcommunication* m_udpComm;
+	UDPcommunication* m_udpComm;
 	double m_tickTime{ 0.0 };
 
 	// callback Pointer

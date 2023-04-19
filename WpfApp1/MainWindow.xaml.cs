@@ -76,7 +76,7 @@ namespace WpfApp1
             {
                 EventLogBox.Text += "위협기 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
-
+                // 메인화면에 공중위협 설정값 띄우기
                 double sx = 0.0;
                 double sy = 0.0;
                 double ex = 0.0;
@@ -101,16 +101,24 @@ namespace WpfApp1
                 {
                     strKind = "Missile";
                 }
-                
                 string strSpeed = speed.ToString();
-
                 T_StartPointData_X.Text = strSX;
                 T_StartPointData_Y.Text = strSY;
                 T_FinalPointData_X.Text = strEX;
                 T_FinalPointData_Y.Text = strEY;
                 VelocityData.Text = strSpeed;
                 TargetTypeData.Text = strKind;
+                
+                sy = 620 - sy;
+                ey = 620 - ey;
 
+                // 공중위협 초기 설정값으로 위치 이동
+                targetStartPoint.Margin = new System.Windows.Thickness { Left = sx, Top = sy, Right = 0, Bottom = 0 };
+                targetFinalPoint.Margin = new System.Windows.Thickness { Left = ex, Top = ey, Right = 0, Bottom = 0 };
+                targetLine.X1 = sx + 20;
+                targetLine.Y1 = sy + 30;
+                targetLine.X2 = ex + 10;
+                targetLine.Y2 = ey + 30;
 
             }
         }
@@ -129,6 +137,22 @@ namespace WpfApp1
             {
                 EventLogBox.Text += "유도탄 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
+                //메인화면에 유도탄 시나리오 설정 값 띄우기
+                double x = 0.0;
+                double y = 0.0;
+                
+                unsafe
+                {
+                    Wrapper.simulationCtrl.getMissleScenario(&x, &y);
+                }
+                string strX = x.ToString();
+                string strY = y.ToString();
+
+                M_StartPointData_X.Text = strX;
+                M_StartPointData_Y.Text = strY;
+                // 유도탄 초기 설정값으로 위치 이동 /// 값 수정해야함!!!
+                y = 620 - y;
+                MissileCanvas.Margin = new System.Windows.Thickness { Left = y, Top = x, Right = 0, Bottom = 0 };
             }
         }
         
