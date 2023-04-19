@@ -24,6 +24,8 @@ public:
 	void setTargetScenario(double cord[4], char kind, double speed);
 
 	inline int getHeadControlStatus() { return static_cast<int>(m_status); };
+
+	inline ScenarioSetting getScenarioinfo() { return m_scen; };
 	inline State getMisslePosition() { return m_missleState; };
 	inline State getTargetPosition() { return m_targetState; };
 

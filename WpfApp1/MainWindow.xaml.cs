@@ -32,7 +32,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             
-            StateDisplay.Text = "잉";
+            StateDisplay.Text = "상태";
             Wrapper.simulationCtrl.MyEvent += new CHeadControllerWrapper.MyEventHandler(doAction);
         }
 
@@ -76,6 +76,42 @@ namespace WpfApp1
             {
                 EventLogBox.Text += "위협기 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
+
+                double sx = 0.0;
+                double sy = 0.0;
+                double ex = 0.0;
+                double ey = 0.0;
+                int kind = 0;
+                double speed = 0.0;
+                string strKind = "";
+                unsafe
+                {
+                    Wrapper.simulationCtrl.getTargetScenario(&sx, &sy, &ex, &ey, &kind, &speed);
+                }
+                string strSX = sx.ToString();
+                string strSY = sy.ToString();
+                string strEX = ex.ToString();
+                string strEY = ey.ToString();
+
+                if(kind == 1)
+                {
+                    strKind = "Aircraft";
+                }
+                else
+                {
+                    strKind = "Missile";
+                }
+                
+                string strSpeed = speed.ToString();
+
+                T_StartPointData_X.Text = strSX;
+                T_StartPointData_Y.Text = strSY;
+                T_FinalPointData_X.Text = strEX;
+                T_FinalPointData_Y.Text = strEY;
+                VelocityData.Text = strSpeed;
+                TargetTypeData.Text = strKind;
+
+
             }
         }
 
