@@ -11,14 +11,12 @@ void CPPWAPPRER::CHeadControllerWrapper::setMissleScenario(double _x, double _y)
 {
 	double cord[2] = { _x,_y };
 	m_headCtrl->setMissleScenario(cord);
-	isMissleSet = true;
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed)
 {
 	double cord[4] = { _sx,_sy,_ex,_ey };
 	m_headCtrl->setTargetScenario(cord, kind, speed);
-	isTargetSet = true;
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::getMissleScenario(double& x, double& y)

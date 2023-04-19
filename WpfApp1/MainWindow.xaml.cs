@@ -23,6 +23,7 @@ namespace WpfApp1
     public static class Wrapper
     {
         public static CHeadControllerWrapper simulationCtrl = new CHeadControllerWrapper();
+        public static bool[] isExcute = new bool[] { false, false, false, false, false };
     }
 
     public partial class MainWindow : Window
@@ -47,10 +48,31 @@ namespace WpfApp1
                 if (status == 0)
                 {
                     StateDisplay.Text = "운용 준비 상태";
+
+                    if(Wrapper.simulationCtrl.getCheckMissileComm() && Wrapper.isExcute[0] == false)
+                    {
+                        EventLogBox.Text += "유도탄 모의기 통신 완료";
+                        EventLogBox.Text += "\n";
+                        Wrapper.isExcute[0] = true;
+                    }
+
+                    if (Wrapper.simulationCtrl.getCheckTargetComm() && Wrapper.isExcute[1] == false)
+                    {
+                        EventLogBox.Text += "위협 모의기 통신 완료";
+                        EventLogBox.Text += "\n";
+                        Wrapper.isExcute[1] = true;
+                    }
                 }
                 else if (status == 1)
                 {
                     StateDisplay.Text = "운용중 상태";
+
+                    if (Wrapper.simulationCtrl.getCheckDetect() && Wrapper.isExcute[3] == false)
+                    {
+                        EventLogBox.Text += "위협 모의기 탐지";
+                        EventLogBox.Text += "\n";
+                        Wrapper.isExcute[3] = true;
+                    }
                     // 현재 타켓 위치 GUI
                     double tx = 0.0;
                     double ty = 0.0;
@@ -81,6 +103,20 @@ namespace WpfApp1
                 }
                 else if (status == 3)
                 {
+                    if ( Wrapper.isExcute[2] == false)
+                    {
+                        if(Wrapper.simulationCtrl.getAttackAvable())
+                        {
+                            EventLogBox.Text += "요격 성공";
+                            EventLogBox.Text += "\n";
+                        }
+                        else
+                        {
+                            EventLogBox.Text += "요격 실패";
+                            EventLogBox.Text += "\n";
+                        }
+                        Wrapper.isExcute[2] = true;
+                    }
                     StateDisplay.Text = "운용종료 상태";
                 }
             }));
@@ -231,6 +267,7 @@ namespace WpfApp1
         {
             MessageBox.Show("모의 종료");
             EventLogBox.Text += "모의 종료";
+            Wrapper.simulationCtrl.stopSimulator();
         }
     }
 }

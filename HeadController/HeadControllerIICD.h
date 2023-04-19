@@ -20,14 +20,6 @@ struct CONTROLLER_STATUS
 	HEAD_CONTROLLER_STATUS status{ HEAD_CONTROLLER_STATUS::READY };
 	double tickTime{0.0};
 };
-/// <summary>
-/// 통신 목록
-/// </summary>
- 
-struct CommStruct
-{
-	char* data;
-};
 
 // 유도탄 시나리오
 struct MissileInfo {
@@ -50,12 +42,12 @@ struct State
 };
 
 // 통신 확인 (송/수신)
-struct checkSum
+struct CheckSum
 {
 	COMM_STATUS status{COMM_STATUS::NS};		   // 통신상태
 };
 
-struct attackEventMessge
+struct AttackEventMessge
 {
 	bool isSuccess{ false };		// 성공  / 실패
 };

@@ -23,6 +23,7 @@ namespace CPPWAPPRER {
 		};
 		~CHeadControllerWrapper() {};
 		void startSimulator();
+		void stopSimulator() { m_headCtrl->stopSimulation(); };
 		void setMissleScenario(double _x, double _y);
 		void setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed);
 
@@ -32,8 +33,18 @@ namespace CPPWAPPRER {
 		void getTargetPosition(double& _x, double& _y);
 		
 		inline int getSimulatorStatus() { return m_headCtrl->getHeadControlStatus(); };
-		inline bool getMissleStatus() { return isMissleSet; };
-		inline bool getTargetStatus() { return isTargetSet; };
+
+		//bool m_checkMissileComm{ false };
+		//bool m_checkTargetComm{ false };
+		//bool attackAvable{ false };
+		//bool checkDetect{ false };
+
+		inline bool getCheckDetect() { return m_headCtrl->checkDetect; };
+		inline bool getAttackAvable() { return m_headCtrl->attackAvable; };
+		inline bool getCheckTargetComm() { return m_headCtrl->m_checkTargetComm; };
+		inline bool getCheckMissileComm() { return m_headCtrl->m_checkMissileComm; };
+		inline bool getMissleStatus() { return m_headCtrl->m_missileScenSet; };
+		inline bool getTargetStatus() { return m_headCtrl->m_targetScenSet; };
 		// TODO: 여기에 이 클래스에 대한 메서드를 추가합니다.
 	public:
 		// 이벤트 델리게이트 선언
@@ -49,9 +60,7 @@ namespace CPPWAPPRER {
 			MyEvent("Hello");
 		}
 	private:
-		GCHandle gch;
+		GCHandle gch; 
 		HeadController* m_headCtrl;
-		bool isMissleSet{ false };
-		bool isTargetSet{ false };
 	};
 }
