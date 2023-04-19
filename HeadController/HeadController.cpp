@@ -60,12 +60,16 @@ void HeadController::readData()
 	// 통신으로 데이터 받기 구현
 }
 
-void HeadController::writeData()
+void HeadController::writeStatusData()
 {
 	//객체가 소멸시에 unlock 되는 특성을 가지고 있습니다.
 	std::lock_guard<std::mutex> lg{ *(std::mutex *)mutex_ };
 	
 	// 통신으로 데이터 보내기 구현
+	CONTROLLER_STATUS trans;
+	trans = { m_status,m_tickTime };
+	m_udpComm->send_('1', trans, 0);		// 운용통제기 상태 보내기
+	m_udpComm->send_('1', trans, 1);		// 운용통제기 상태 보내기
 }
 
 void HeadController::update()
@@ -78,8 +82,10 @@ void HeadController::update()
 		// 시나리오 설정이 완료되고 start 버튼이 눌린다면 RUN으로 넘어간다.
 
 		// // 0, 상태보내기 (공통)/////////////////////////////////////////////////////////////////////////////////////////////
+
 		//m_udpComm->send_('1', m_status, 0);		// 운용통제기 상태 보내기
 		//m_udpComm->send_('1', m_status, 1);		// 운용통제기 상태 보내기
+
 
 		// 1. 유도탄 시나리오 보내기///////////////////////////////////////////////////////////////////////////////////////////////
 		//m_udpComm->send_('3',m_scen.GetMissile(),0);
@@ -110,35 +116,39 @@ void HeadController::update()
 		* 0. 타이머 업데이트
 		* 1. 유도탄 정보 받기
 		* 2. 위협기 모의정보 받기
-		* 3. 시간정보 유도탄 전송
-		* 4. 시간정보 위협기 전송
-		* 5. 충돌여부 판단
+		* 3. 충돌여부 판단
 		*/
 
 		///  0. 타이머 업데이트 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		m_tickTime += 0.5;
 
+		// // 0, 상태보내기 (공통)/////////////////////////////////////////////////////////////////////////////////////////////
+		writeStatusData();
+
 		// 1. 유도탄 정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//m_udpComm->get_data('6', m_missleState, sizeof(m_missleState));
 
 		//  2. 위협기 모의정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		//m_udpComm->get_data('6', m_targetState, sizeof(m_targetState));
+
+		//m_udpComm->get_data('6', m_targetState, sizeof(m_targetState));
+
+		//  3. 충돌여부 판단 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//if (checkDetonation() == true)
+		//{
+		//	m_status = HEAD_CONTROLLER_STATUS::EVENT_CHECK;
+		//}
+
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::EVENT_CHECK)
 	{
-		/*
-		* 0. 위협기 종료정보 전송
-		* 1. 유도탄 종료정보 전송
-		* 1. 위협기 종료 확인 정보 받기
-		* 2. 유도탄 종료 확인 정보 받기
-		* 3. 종료 여부 확인
-		*/
+		writeStatusData();
+		m_status = HEAD_CONTROLLER_STATUS::END;
 	}
 	else if (m_status == HEAD_CONTROLLER_STATUS::END)
 	{
-		/*
-		* 0. 종료 상태 설정 (스레드 종료)
-		*/
+		writeStatusData();
 	}
 
 	// 인터페이스에서 GUI화면 업데이트 이벤트 호출
