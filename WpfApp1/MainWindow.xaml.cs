@@ -51,6 +51,29 @@ namespace WpfApp1
                 else if (status == 1)
                 {
                     StateDisplay.Text = "운용중 상태";
+                    // 현재 타켓 위치 GUI
+                    double tx = 0.0;
+                    double ty = 0.0;
+                    unsafe
+                    {
+                        Wrapper.simulationCtrl.getTargetPosition(&tx, &ty);
+                    }
+                    ty = 620 - ty;
+                    currentTarget.Margin = new System.Windows.Thickness { Left = tx, Top = ty, Right = 0, Bottom = 0 };
+                    // 현재 유도탄 위치 GUI
+                  
+                    double mx = 0.0;
+                    double my = 0.0;
+
+                    unsafe
+                    {
+                        Wrapper.simulationCtrl.getMissleScenario(&mx, &my);
+                    }
+                    // 유도탄 초기 설정값으로 위치 이동
+                    mx = mx - 160;
+                    my = 475 - my;
+
+                    MissileCanvas.Margin = new System.Windows.Thickness { Left = mx, Top = my, Right = 0, Bottom = 0 };
                 }
                 else if (status == 2)
                 {
@@ -109,7 +132,6 @@ namespace WpfApp1
                 VelocityData.Text = strSpeed;
                 TargetTypeData.Text = strKind;
 
-
                 sy = 620 - sy;
                 ey = 620 - ey;
                 currentTarget.Margin = new System.Windows.Thickness { Left = sx, Top = sy, Right = 0, Bottom = 0 };
@@ -152,11 +174,12 @@ namespace WpfApp1
 
                 M_StartPointData_X.Text = strX;
                 M_StartPointData_Y.Text = strY;
-                // 유도탄 초기 설정값으로 위치 이동 /// 값 수정해야함!!!
+                // 유도탄 초기 설정값으로 위치 이동
                 x = x-160;
                 y = 475-y;
 
                 MissileCanvas.Margin = new System.Windows.Thickness { Left = x, Top = y, Right = 0, Bottom = 0 };
+                
             }
         }
         

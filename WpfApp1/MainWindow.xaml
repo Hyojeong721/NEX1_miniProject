@@ -92,9 +92,9 @@
 
             <Canvas x:Name="MissileCanvas" Margin="320,300,20,10.4">
                 <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5" />
-                <TextBlock x:Name="currentMissile" TextWrapping="Wrap" Text="●" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="red" Height="40" Width="40" Canvas.Left="150" Canvas.Top="150" />
+                <TextBlock x:Name="startMissile" TextWrapping="Wrap" Text="X" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="red" Height="40" Width="40" Canvas.Left="150" Canvas.Top="150" />
             </Canvas>
-            
+
 
             <TextBlock x:Name="targetStartPoint" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
             <TextBlock x:Name="targetFinalPoint" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
