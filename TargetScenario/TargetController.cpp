@@ -51,6 +51,6 @@ void TargetController::Run() {
 		else {
 			continue;
 		}
-		Sleep(1000)
+		Sleep(1000);
 	}
 }
