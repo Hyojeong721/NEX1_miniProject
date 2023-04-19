@@ -81,13 +81,13 @@
 
 
         <Grid x:Name="imgGrid"  Margin="256,7,297,-27" Height="690" Width="690">
-            <Image x:Name="IMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="680" Margin="8,0,0,0" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
+            <Image x:Name="IMG" Source="/Resources/gridimage.PNG" HorizontalAlignment="Left" Height="654" Margin="8,-4,0,0" VerticalAlignment="Top" Width="680" MouseDown="getPosition"/>
             <TextBlock x:Name="outputboxX" HorizontalAlignment="Left" Height="30" Margin="573,589,0,0" TextWrapping="Wrap" Text="dddddd" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="-3.02,0.613"/>
             <TextBlock x:Name="outputboxY" HorizontalAlignment="Left" Height="30" Margin="573,624,0,-0.6" TextWrapping="Wrap" Text="20000" VerticalAlignment="Top" Width="71" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
             <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="537,589,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
             <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="537,624,0,-0.6" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
 
-            <Canvas x:Name="MissleCanvas" Margin="134,3.5,148, 5" Height="350" Width="350"  RenderTransformOrigin="0.5,0.537">
+            <Canvas x:Name="MissileCanvas" Margin="134,3.5,148, 5" Height="350" Width="350"  RenderTransformOrigin="0.5,0.537">
                 <Canvas.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -107,12 +107,7 @@
             <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3"/>
             <Ellipse x:Name="currentTarget" Width="20" Height="20" Fill="white" Canvas.Left="165" Canvas.Top="165" RenderTransformOrigin="-1.56,-1.42" Margin="137,374,523,286"  />
 
-
-
         </Grid>
-
-        <!--여기부터 테스트-->
-
-
+        
     </Grid>
 </Window>

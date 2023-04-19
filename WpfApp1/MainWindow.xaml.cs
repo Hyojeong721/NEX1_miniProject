@@ -89,10 +89,11 @@ namespace WpfApp1
 
         private void moveM(object sender, RoutedEventArgs e)
         {
-            Thickness marginThickness = MissleCanvas.Margin;
-            //유도탄 위치 바꿀때 쓰면 됩니다.
-            MissleCanvas.Margin = new Thickness(300);
-           
+            //Thickness marginThickness = MissleCanvas.Margin;
+            //MissleCanvas.Margin = new Thickness(300);
+            //유도탄 위치 바꿀때 쓰면 됩니다. (a,b) 이동시 x -> x+a , y -> y-b
+            MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
+
         }
     }
 }
