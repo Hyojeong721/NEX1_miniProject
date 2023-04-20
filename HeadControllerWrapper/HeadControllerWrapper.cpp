@@ -9,25 +9,31 @@ void CPPWAPPRER::CHeadControllerWrapper::startSimulator()
 
 void CPPWAPPRER::CHeadControllerWrapper::setMissleScenario(double _x, double _y)
 {
-	double cord[2] = { _x,_y };
+	//double scale = 100.0 * 1000.0 / 350.0;
+	double cord[2] = { _x,   _y };
 	m_headCtrl->setMissleScenario(cord);
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed)
 {
-	double cord[4] = { _sx,_sy,_ex,_ey };
+	//double scale = 100.0 * 1000.0 / 350.0;
+	double cord[4] = {  _sx, _sy, _ex, _ey };
 	m_headCtrl->setTargetScenario(cord, kind, speed);
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::getMissleScenario(double& x, double& y)
 {
+	double scale = 100.0 * 1000.0 / 350.0;
+	scale = 1.0 / scale;
 	x = m_headCtrl->getScenarioinfo().GetMissile()._x;
-	y = m_headCtrl->getScenarioinfo().GetMissile()._y;
+	y = m_headCtrl->getScenarioinfo().GetMissile()._y ;
 }
 
 void CPPWAPPRER::CHeadControllerWrapper::getTargetScenario(double& _sx, double& _sy, double& _ex, double& _ey, int &_kind, double &_speed)
 {
-	_sx = m_headCtrl->getScenarioinfo().GetTarget()._sx;
+	double scale = 100.0 * 1000.0 / 350.0;
+	scale = 1.0 / scale;
+	_sx = m_headCtrl->getScenarioinfo().GetTarget()._sx ;
 	_sy = m_headCtrl->getScenarioinfo().GetTarget()._sy;
 	_ex = m_headCtrl->getScenarioinfo().GetTarget()._ex;
 	_ey = m_headCtrl->getScenarioinfo().GetTarget()._ey;

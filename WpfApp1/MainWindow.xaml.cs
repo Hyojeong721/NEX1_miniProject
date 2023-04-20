@@ -23,7 +23,7 @@ namespace WpfApp1
     public static class Wrapper
     {
         public static CHeadControllerWrapper simulationCtrl = new CHeadControllerWrapper();
-        public static bool[] isExcute = new bool[] { false, false, false, false, false };
+        public static bool[] isExcute = new bool[] { false, false, false, false, false,false,false,false };
     }
 
     public partial class MainWindow : Window
@@ -32,9 +32,9 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            
             StateDisplay.Text = "상태";
             Wrapper.simulationCtrl.MyEvent += new CHeadControllerWrapper.MyEventHandler(doAction);
+            Wrapper.simulationCtrl.excuteSim();
         }
 
         public void doAction(string message)
@@ -62,48 +62,127 @@ namespace WpfApp1
                         EventLogBox.Text += "\n";
                         Wrapper.isExcute[1] = true;
                     }
+
+                    if (Wrapper.simulationCtrl.getAttackAvable() && Wrapper.isExcute[4] == false)
+                    {
+                        EventLogBox.Text += "요격 가능";
+                        EventLogBox.Text += "\n";
+                        Wrapper.isExcute[4] = true;
+                    }
                 }
                 else if (status == 1)
                 {
-                    StateDisplay.Text = "운용중 상태";
 
-                    if (Wrapper.simulationCtrl.getCheckDetect() && Wrapper.isExcute[3] == false)
-                    {
-                        EventLogBox.Text += "위협 모의기 탐지";
-                        EventLogBox.Text += "\n";
-                        Wrapper.isExcute[3] = true;
-                    }
+                    double scale = 1.0 / (100 * 1000 / 350);
+
+                    StateDisplay.Text = "운용중";
+
                     // 현재 타켓 위치 GUI
                     double tx = 0.0;
                     double ty = 0.0;
+
+                    double TPosx = 0.0;
+                    double TPosy = 0.0;
                     unsafe
                     {
-                        Wrapper.simulationCtrl.getTargetPosition(&tx, &ty);
-                    }
-                    ty = 620 - ty;
-                    currentTarget.Margin = new System.Windows.Thickness { Left = tx, Top = ty, Right = 0, Bottom = 0 };
                     
+                        Wrapper.simulationCtrl.getTargetPosition(&tx, &ty);
+                        Wrapper.simulationCtrl.getTargetPosition(&TPosx, &TPosy);
+                    }
+
+                    //if (Double.IsNaN(tx) == false && Double.IsNaN(ty) == false)
+                    //{
+
+                    //string strtx = tx.ToString();
+                    //string strty = ty.ToString();
+
+                    //Target_Outputbox_X.Text = strtx;
+                    //Target_Outputbox_Y.Text = strty;
+
+                    //tx = tx * scale;
+                    //ty = ty * scale;
+
+
+                    //ty = 620 - ty;
+
+                    //currentTarget.Margin = new System.Windows.Thickness { Left = tx, Top = ty, Right = 0, Bottom = 0 };
+                    //}
                     // 현재 유도탄 위치 GUI
                     double mx = 0.0;
                     double my = 0.0;
-                    string strmx = mx.ToString();
-                    string strmy = my.ToString();
-                    outputboxX.Text = strmx;
-                    outputboxY.Text = strmy;
+                    double cmy = 0.0;
+
+                    double MPosx = 0.0;
+                    double MPosy = 0.0;
 
                     unsafe
                     {
-                        Wrapper.simulationCtrl.getMissleScenario(&mx, &my);
+                        Wrapper.simulationCtrl.getMisslePosition(&mx, &my);
+                        Wrapper.simulationCtrl.getMisslePosition(&MPosx, &MPosy);
                     }
-                    // 유도탄 초기 설정값으로 위치 이동
-                    mx = mx - 160;
-                    my = 475 - my;
 
-                    MissileCanvas.Margin = new System.Windows.Thickness { Left = mx, Top = my, Right = 0, Bottom = 0 };
+                    if (Math.Abs(MPosx - TPosx) > 5.0 && Math.Abs(MPosy - TPosy) > 5.0)
+                    {
+                        string strtx = tx.ToString();
+                        string strty = ty.ToString();
+
+                        Target_Outputbox_X.Text = strtx;
+                        Target_Outputbox_Y.Text = strty;
+
+                        tx = tx * scale;
+                        ty = ty * scale;
+
+
+                        ty = 620 - ty;
+
+                        currentTarget.Margin = new System.Windows.Thickness { Left = tx, Top = ty, Right = 0, Bottom = 0 };
+
+                        string strmx = mx.ToString();
+                        string strmy = my.ToString();
+
+                        Missile_Outputbox_X.Text = strmx;
+                        Missile_Outputbox_Y.Text = strmy;
+                        // 유도탄 초기 설정값으로 위치 이동
+
+                        mx = mx * scale;
+                        my = my * scale;
+
+                        cmy = 620 - my;
+                        currentMissile.Margin = new System.Windows.Thickness { Left = mx, Top = cmy, Right = 0, Bottom = 0 };
+
+                        //mx = mx - 160;
+                        //my = 475 - my;
+
+                        if (Double.IsNaN(TPosx) == false && Double.IsNaN(TPosy) == false && Double.IsNaN(MPosx) == false && Double.IsNaN(MPosy) == false)
+                        {
+                            double distance = (TPosx - MPosx) * (TPosx - MPosx) + (TPosy - MPosy) * (TPosy - MPosy);
+
+                            if (Math.Sqrt(distance) <= 50000.0 && Wrapper.isExcute[3] == false)
+                            {
+                                EventLogBox.Text += "위협 모의기 탐지";
+                                EventLogBox.Text += "\n";
+                                Wrapper.isExcute[3] = true;
+                            }
+
+                            if (Math.Sqrt(distance) <= 500.0 && Wrapper.isExcute[7] == false)
+                            {
+                                Wrapper.simulationCtrl.setStatus(2);
+                                Wrapper.isExcute[7] = true;
+                            }
+                        }
+                    }
+                    //MissileCanvas.Margin = new System.Windows.Thickness { Left = mx, Top = my, Right = 0, Bottom = 0 }
+
                 }
                 else if (status == 2)
                 {
-                    StateDisplay.Text = "요격확인 상태";
+                    StateDisplay.Text = "요격확인";
+                    if (Wrapper.isExcute[5] == false)
+                    {
+                        EventLogBox.Text += "요격 성공";
+                        EventLogBox.Text += "\n";
+                        Wrapper.isExcute[5] = true;
+                    }
                 }
                 else if (status == 3)
                 {
@@ -116,12 +195,12 @@ namespace WpfApp1
                         }
                         else
                         {
-                            EventLogBox.Text += "요격 실패";
+                            EventLogBox.Text += "요격 불가";
                             EventLogBox.Text += "\n";
                         }
                         Wrapper.isExcute[2] = true;
                     }
-                    StateDisplay.Text = "운용종료 상태";
+                    StateDisplay.Text = "운용종료";
                 }
             }));
         }
@@ -137,6 +216,9 @@ namespace WpfApp1
 
             if (Wrapper.simulationCtrl.getTargetStatus() == true)
             {
+
+                double scale = 1.0 / (100 * 1000 / 350);
+
                 EventLogBox.Text += "위협기 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
                 // 메인화면에 공중위협 설정값 띄우기
@@ -151,11 +233,13 @@ namespace WpfApp1
                 {
                     Wrapper.simulationCtrl.getTargetScenario(&sx, &sy, &ex, &ey, &kind, &speed);
                 }
+
+
                 string strSX = sx.ToString();
                 string strSY = sy.ToString();
                 string strEX = ex.ToString();
                 string strEY = ey.ToString();
-
+                
                 if(kind == 1)
                 {
                     strKind = "Aircraft";
@@ -164,6 +248,7 @@ namespace WpfApp1
                 {
                     strKind = "Missile";
                 }
+
                 string strSpeed = speed.ToString();
                 T_StartPointData_X.Text = strSX;
                 T_StartPointData_Y.Text = strSY;
@@ -172,8 +257,17 @@ namespace WpfApp1
                 VelocityData.Text = strSpeed;
                 TargetTypeData.Text = strKind;
 
-                sy = 620 - sy;
-                ey = 620 - ey;
+                Target_Outputbox_X.Text = strSX;
+                Target_Outputbox_Y.Text = strSY;
+
+                sx = (sx) * scale;
+                ex = (ex) * scale;
+
+                sy = (sy) * scale;
+                ey = (ey) * scale;
+
+                sy = (620 - sy);
+                ey = (620 - ey);
                 currentTarget.Margin = new System.Windows.Thickness { Left = sx, Top = sy, Right = 0, Bottom = 0 };
 
                 // 공중위협 초기 설정값으로 위치 이동
@@ -199,54 +293,44 @@ namespace WpfApp1
             
             if (Wrapper.simulationCtrl.getMissleStatus()==true)
             {
+                double scale = 1.0 / (100 * 1000 / 350);
                 EventLogBox.Text += "유도탄 시나리오 설정 완료";
                 EventLogBox.Text += "\n";
                 //메인화면에 유도탄 시나리오 설정 값 띄우기
                 double x = 0.0;
                 double y = 0.0;
-                
+                double cy = 0.0;
+
                 unsafe
                 {
                     Wrapper.simulationCtrl.getMissleScenario(&x, &y);
                 }
+
                 string strX = x.ToString();
                 string strY = y.ToString();
-                outputboxX.Text = strX;
-                outputboxY.Text = strY;
+
+                Missile_Outputbox_X.Text = strX;
+                Missile_Outputbox_Y.Text = strY;
+
                 M_StartPointData_X.Text = strX;
                 M_StartPointData_Y.Text = strY;
 
+                x = (x) * scale;
+                y = (y) * scale;
+
+                cy = (620 - y);
+            
+                currentMissile.Margin = new System.Windows.Thickness { Left = x, Top = cy, Right = 0, Bottom = 0 };
+
                 // 유도탄 초기 설정값으로 위치 이동
-                x = x-160;
-                y = 475-y;
+                x = (x-160);
+                y = (475-y);
 
                 MissileCanvas.Margin = new System.Windows.Thickness { Left = x, Top = y, Right = 0, Bottom = 0 };
                 
             }
         }
         
-        
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-
-        private void getPosition(object sender, MouseButtonEventArgs e)
-        {
-            Point pos = e.GetPosition((IInputElement)sender);
-
-            int positionX = (int)pos.X;
-            int positionY = (int)pos.Y;
-
-            string strX = positionX.ToString();
-            string strY = positionY.ToString();
-
-            outputboxX.Text = strX;
-            outputboxY.Text = strY;
-
-        }
-
         private void startBtn_Click(object sender, RoutedEventArgs e)
         {
             EventLogBox.Text += "시뮬레이션 시작";
@@ -254,25 +338,11 @@ namespace WpfApp1
             Wrapper.simulationCtrl.startSimulator();
         }
 
-
-
         private void StopBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("모의 종료");
-            EventLogBox.Text += "모의 종료";
-            Window.GetWindow(this).Close();
+            EventLogBox.Text += "대공유도탄 모의 시스템 중지";
 
-            //Thickness marginThickness = MissleCanvas.Margin;
-            //MissleCanvas.Margin = new Thickness(300);
-            //유도탄 위치 바꿀때 쓰면 됩니다. (a,b) 이동시 x -> x+a , y -> y-b
-            //MissileCanvas.Margin = new System.Windows.Thickness { Left = 20, Bottom = 150 };
-        }
-
-
-        private void stopBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("모의 종료");
-            EventLogBox.Text += "모의 종료";
             Wrapper.simulationCtrl.stopSimulator();
         }
     }

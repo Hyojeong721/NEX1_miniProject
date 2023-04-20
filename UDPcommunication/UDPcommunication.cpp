@@ -12,6 +12,7 @@
 #include<thread>
 #include<queue>
 #include<string>
+#include<fstream>
 using namespace std;
 
 #pragma comment(lib, "ws2_32.lib")
@@ -19,13 +20,13 @@ using namespace std;
 
 #define PACKET_LENGTH    1024
 
-SOCKET hSocket;
-SOCKADDR_IN tDestAddr[2];
-SOCKADDR_IN rcv_DestAddr;
-char recv_Packet[PACKET_LENGTH] = {};
-char send_Packet[PACKET_LENGTH] = {};
+static SOCKET hSocket;
+static SOCKADDR_IN tDestAddr[2];
+static SOCKADDR_IN rcv_DestAddr;
+static char recv_Packet[PACKET_LENGTH] = {};
+static char send_Packet[PACKET_LENGTH] = {};
 
-
+static char recv_Packet2[PACKET_LENGTH] = {};
 
 //queue<char*>buffer[10];
 
@@ -298,14 +299,17 @@ void UDPcommunication::recv_() {
 void UDPcommunication::recv_thread() {
 
 
-	vector<std::thread>threads;
+	std::thread t1([&]() {
+		while (true)
+		{
+			// 하고싶은 작업
+			recv_();
+			//std::cout << "1 \n" << "\n";
+			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+		}
+		});
 
-	for (int i = 0; i < 7; ++i) {
-		threads.emplace_back(std::thread(&UDPcommunication::recv_, this));
-	}
-
-	for (auto& thread : threads)
-		thread.detach();
+	t1.detach();
 
 }
 
@@ -336,75 +340,82 @@ UDPcommunication::UDPcommunication(int port, int dest_port, int dest_port2) {
 //template<typename T>
 
 void UDPcommunication::send_(char identification, HEAD_CONTROLLER_STATUS data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, COMM_STATUS data, int dest_num) {
-
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, CONTROLLER_STATUS data, int dest_num) {
-
+	std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+	if (file_.is_open()) {
+		//double a = 350.0;
+		file_ << "CONTROLLER_STAUTS" << "\n";
+	}
+	file_.close();
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
-void UDPcommunication::send_(char identification, MissileInfo data, int dest_num) {
-
+int UDPcommunication::send_2(char identification, MissileInfo data, int dest_num, int sss) {
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
+	
+	
 	messageTobyte(identification, data);
-
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
-
+	
+	
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	return 1;
 }
 void UDPcommunication::send_(char identification, TargetInfo data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, State data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, CheckSum data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, AttackEventMessge data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 void UDPcommunication::send_(char identification, AttackInfo data, int dest_num) {
-
+	
 	memset(send_Packet, 0, PACKET_LENGTH);
 	messageTobyte(identification, data);
 
-	sendto(hSocket, send_Packet, strlen(send_Packet), 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
+	sendto(hSocket, send_Packet, PACKET_LENGTH, 0, (SOCKADDR*)&tDestAddr[dest_num], iDestLength[dest_num]);
 
 }
 
@@ -428,6 +439,7 @@ void UDPcommunication::get_data(char identification, COMM_STATUS& data, int stru
 }
 
 void UDPcommunication::get_data(char identification, CONTROLLER_STATUS& data, int struct_size, int from) {
+	
 	int idx = identification - '0';
 	if (!buffer_each[from][idx].empty()) {
 
@@ -460,6 +472,12 @@ void UDPcommunication::get_data(char identification, State& data, int struct_siz
 	}
 }
 void UDPcommunication::get_data(char identification, CheckSum& data, int struct_size, int from) {
+	std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+	if (file_.is_open()) {
+		//double a = 350.0;
+		file_ << "CheckSum_get" << "\n";
+	}
+	file_.close();
 	int idx = identification - '0';
 	if (!buffer_each[from][idx].empty()) {
 

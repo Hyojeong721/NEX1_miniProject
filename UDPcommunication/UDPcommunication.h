@@ -33,7 +33,7 @@ public:
 	void send_(char identification, HEAD_CONTROLLER_STATUS data, int dest_num = 0);
 	void send_(char identification, COMM_STATUS data, int dest_num);
 	void send_(char identification, CONTROLLER_STATUS data, int dest_num);
-	void send_(char identification, MissileInfo data, int dest_num);
+	int send_2(char identification, MissileInfo data, int dest_num, int sss=0);
 	void send_(char identification, TargetInfo data, int dest_num);
 	void send_(char identification, State data, int dest_num);
 	void send_(char identification, CheckSum data, int dest_num);

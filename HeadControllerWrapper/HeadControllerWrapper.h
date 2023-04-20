@@ -23,10 +23,11 @@ namespace CPPWAPPRER {
 		};
 		~CHeadControllerWrapper() {};
 		void startSimulator();
+		void excuteSim() { m_headCtrl->excuteSimTread(); };
 		void stopSimulator() { m_headCtrl->stopSimulation(); };
 		void setMissleScenario(double _x, double _y);
 		void setTargetScenario(double _sx, double _sy, double _ex, double _ey, int kind, double speed);
-
+		void setStatus(int st) { m_headCtrl->setStatus(st); };
 		void getMissleScenario(double& x, double& y);
 		void getTargetScenario(double &_sx, double& _sy, double &_ex, double &_ey, int& _kind, double& _speed);
 		void getMisslePosition(double& _x, double& _y);

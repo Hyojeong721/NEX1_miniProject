@@ -5,7 +5,8 @@ enum class HEAD_CONTROLLER_STATUS : int
 	READY = 0U,		//운용준비상태
 	RUN,		    //운용중 상태
 	EVENT_CHECK,	//요격확인 상태
-	END				//운용종료 상태
+	END,
+	TRASH//운용종료 상태
 };
 
 enum class COMM_STATUS : unsigned
@@ -29,7 +30,7 @@ struct MissileInfo {
 // 공중 위협기 시나리오 정보 
 struct TargetInfo {
 	double _sx, _sy;		// 발사점
-	double _ex, _ey;		// 탄착점
+	double _ex, _ey;		// 탄착점5
 	int kind;				// 위협기 종류
 	double speed;			// 위협기 속도
 };
@@ -58,4 +59,7 @@ struct AttackInfo {
 	double launchTime;			// 유도탄 발사 시간
 	double attackPoint_x;		// 요격 지점 x 좌표
 	double attackPoint_y;		// 요격 지점 y 좌표
+
+
+
 };

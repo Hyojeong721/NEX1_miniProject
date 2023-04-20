@@ -22,7 +22,7 @@ public:
 
     void setMissleScenario(double cord[2]);      // int _sx, int _sy
     void setTargetScenario(double cord[4], char kind, double speed);
-
+    void setStatus(int status) { m_status = static_cast<HEAD_CONTROLLER_STATUS>(status); };
     inline int getHeadControlStatus() { return static_cast<int>(m_status); };
 
     inline ScenarioSetting getScenarioinfo() { return m_scen; };
@@ -45,6 +45,7 @@ public:
     // 시나리오 설정 확인
     bool m_missileScenSet{ false };
     bool m_targetScenSet{ false };
+    
 
 private:
     void readData();      // 데이터 읽기
@@ -58,7 +59,7 @@ private:
     ScenarioSetting m_scen;
     State m_missleState;
     State m_targetState;
-    UDPcommunication* m_udpComm;
+    UDPcommunication m_udpComm=UDPcommunication(8080,8081,8082);
     double m_tickTime{ 0.0 };
 
     // callback Pointer

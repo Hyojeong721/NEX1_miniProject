@@ -11,7 +11,10 @@
 #include <thread>
 #include <memory.h>
 #include <mutex>
-
+#include<string>
+// for test
+#include <iostream>
+#include <fstream>
 // TODO: 라이브러리 함수의 예제입니다.
 void fnHeadController()
 {
@@ -21,7 +24,8 @@ HeadController::HeadController()
 {
     std::mutex tmp;
     mutex_ = &tmp;
-    m_udpComm = new UDPcommunication(8080, 8081, 8082);
+   // m_udpComm = UDPcommunication(8080, 8081, 8082);
+    //UDPcommunication a{ 1, 2, 3 };
 }
 
 // 스타트 버튼 누르면 호출 호출 시 스레드 시작
@@ -45,14 +49,26 @@ void HeadController::stopSimulation()
 void HeadController::setMissleScenario(double cord[2])
 {
     m_scen.SetMissile(cord);
-    m_udpComm->send_('4', m_scen.GetMissile(), 0); // 미사일 시나리오
+    m_missleState.position[0] = m_scen.GetMissile()._x;
+    m_missleState.position[1] = m_scen.GetMissile()._y;
+    //MissileInfo test; test._x = 10.0, test._y = 10.0;
+    //m_udpComm->send_('4', test, 0);
+    //std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+    //if (file_.is_open()) {
+    //    //double a = 350.0;
+    //    file_ << "asdasdf" << "\n";
+    //}
+    //file_.close();
+    m_udpComm.send_2('4', m_scen.GetMissile(), 0,1); // 미사일 시나리오
     m_missileScenSet = true;
 }
 
 void HeadController::setTargetScenario(double cord[4], char kind, double speed)
 {
     m_scen.SetTarget(cord, kind, speed);
-    m_udpComm->send_('5', m_scen.GetTarget(), 1); // 타켓 정보 보내기
+    m_targetState.position[0] = m_scen.GetTarget()._sx;
+    m_targetState.position[1] = m_scen.GetTarget()._sy;
+    m_udpComm.send_('5', m_scen.GetTarget(), 1); // 타켓 정보 보내기
     m_targetScenSet = true;
 }
 
@@ -70,14 +86,26 @@ void HeadController::writeStatusData()
     //std::lock_guard<std::mutex> lg{ *(std::mutex *)mutex_ };
 
     // 통신으로 데이터 보내기 구현
+   /* std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+    if (file_.is_open()) {
+        file_ << "asdf" << "\n";
+    }
+    file_.close();*/
+
     CONTROLLER_STATUS trans;
     trans = { m_status,m_tickTime };
-    m_udpComm->send_('3', trans, 0);      // 운용통제기 상태 보내기
-    m_udpComm->send_('3', trans, 1);      // 운용통제기 상태 보내기
+    
+    m_udpComm.send_('3', trans, 0);      // 운용통제기 상태 보내기
+    m_udpComm.send_('3', trans, 1);      // 운용통제기 상태 보내기
 }
 
 void HeadController::update()
 {
+    std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+    
+       
+    
+    
     if (UIstopInput == true)
     {
         m_status = HEAD_CONTROLLER_STATUS::END;   // UI에서 종료 명령이 들어오면 STOP한다.
@@ -88,7 +116,7 @@ void HeadController::update()
         if (m_checkMissileComm == false)
         {
             CheckSum missileCheck;
-            m_udpComm->get_data('7', missileCheck, sizeof(missileCheck),0);
+            m_udpComm.get_data('7', missileCheck, sizeof(missileCheck),0);
 
 
             if (missileCheck.status == COMM_STATUS::OK) m_checkMissileComm = true; // 로그창에서 대공 유도탄 모의기 연결 확인 추가 (wrapper에도 받는 기능 추가)
@@ -96,11 +124,8 @@ void HeadController::update()
         if (m_checkTargetComm == false)
         {
             CheckSum targetCheck;
-            m_udpComm->get_data('7', targetCheck, sizeof(targetCheck),1);
-
-
-
-            if (targetCheck.status == COMM_STATUS::OK) m_checkTargetComm = true; // 로그창에서 대공 유도탄 모의기 연결 확인 추가 (wrapper에도 받는 기능 추가)
+            m_udpComm.get_data('7', targetCheck, sizeof(targetCheck),1);
+            if (targetCheck.status == COMM_STATUS::OK) m_checkTargetComm = true; // 로그창에서 위협기 모의기 연결 확인 추가 (wrapper에도 받는 기능 추가)
         }
 
 
@@ -124,7 +149,7 @@ void HeadController::update()
                 else
                 {
                     attackAvable = true;      // 절차 //종료상태일때, "요격 가능" 로그에 띄위기
-                    m_udpComm->send_('9', attackInfo, 0);
+                    m_udpComm.send_('9', attackInfo, 0);
                 }
             }
         }
@@ -151,12 +176,15 @@ void HeadController::update()
         writeStatusData();
 
         // 1. 유도탄 정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        m_udpComm->get_data('6', m_missleState, sizeof(m_missleState),0);
 
+        m_udpComm.get_data('6', m_missleState, sizeof(State),0);
+
+        //file_ << std::to_string(m_missleState.position[0]) << "\n";
         //  2. 위협기 모의정보 받기 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        m_udpComm->get_data('6', m_targetState, sizeof(m_targetState),1);
+        //std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-
+        m_udpComm.get_data('6', m_targetState, sizeof(State),1);
+        file_ <<std::to_string(m_targetState.position[0]) << "\n";
         //  3. 충돌여부 판단 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (checkDetonation() == true)
         {
@@ -178,6 +206,7 @@ void HeadController::update()
     {
         m_cbf();
     }
+    file_.close();
 }
 
 void HeadController::excuteSimTread()
@@ -186,7 +215,7 @@ void HeadController::excuteSimTread()
         while (m_status != HEAD_CONTROLLER_STATUS::END)
         {
             update();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
         }
         });
 
@@ -195,18 +224,23 @@ void HeadController::excuteSimTread()
 
 bool HeadController::checkDetonation()
 {
+   // std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+   
+   
     bool res = false;
-    double distance = sqrt(pow(m_missleState.position[0], 2) - pow(m_targetState.position[0], 2) + pow(m_missleState.position[1], 2) - pow(m_targetState.position[1], 2));
-    if (distance <= 50.0)
+    double distance = 0.0;
+    distance = sqrt(powf(m_missleState.position[0], 2) - pow(m_targetState.position[0], 2) + pow(m_missleState.position[1], 2) - pow(m_targetState.position[1], 2));
+    //file_ << std::to_string(distance) << "\n";
+    if (distance <= 500.0)
     {
-        res = true;
+        //res = true;
     }
-    else;
-    if (distance <= 50000.0)
+    else if (distance <= 50000.0)
     {
-        checkDetect = true;
+        //checkDetect = true;
         // "공중위협 탐지" 로그에 출려
     }
     else;
+   // file_.close();
     return res;
 }
