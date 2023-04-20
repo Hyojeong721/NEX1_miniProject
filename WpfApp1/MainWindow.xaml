@@ -33,7 +33,7 @@
 
 
                 <TextBlock x:Name="TargetTypeData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="133" FontSize="18" Margin="101,61,0,0" TextAlignment="Center"/>
-                <TextBlock x:Name="VelocityData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="91" FontSize="18" Margin="101,99,0,0" TextAlignment="Center"/>
+                <TextBlock x:Name="VelocityData" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="91" FontSize="18" Margin="101,99,0,0" TextAlignment="Center"/>
                 <TextBlock x:Name="VelocityUnit" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="mach" VerticalAlignment="Top" Width="91" FontSize="18" Margin="149,99,0,0" TextAlignment="Center"/>
 
                 <TextBlock x:Name="T_StartPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="66" FontSize="18" Margin="101,135,0,0" TextAlignment="Center" IsEnabled="False"/>
@@ -90,17 +90,17 @@
             <TextBlock x:Name="outputboxX_title" HorizontalAlignment="Left" Height="30" Margin="573,571,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B" RenderTransformOrigin="1.037,0.484"/>
             <TextBlock x:Name="outputboxY_title" HorizontalAlignment="Left" Height="30" Margin="573,606,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="36" FontSize="15" TextAlignment="Center" FontWeight="Bold" Foreground="White" Background="#992B2B2B"/>
 
-            <Canvas x:Name="MissileCanvas" Margin="320,300,20,10.4">
+            <Canvas x:Name="MissileCanvas" Margin="-320,-500,20,10.4">
                 <Ellipse InkCanvas.Left="10" Width="350" Height="350" Stroke="Red" StrokeThickness="5" />
                 <TextBlock x:Name="startMissile" TextWrapping="Wrap" Text="X" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="red" Height="40" Width="40" Canvas.Left="150" Canvas.Top="150" />
             </Canvas>
 
 
-            <TextBlock x:Name="targetStartPoint" HorizontalAlignment="Left" Margin="80,400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
-            <TextBlock x:Name="targetFinalPoint" HorizontalAlignment="Left" Margin="470,100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
-            <TextBlock x:Name="currentTarget" HorizontalAlignment="Left" Margin="80,400,0, 0" TextWrapping="Wrap" Text="●" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="40"/>
+            <TextBlock x:Name="targetStartPoint" HorizontalAlignment="Left" Margin="-80,-400,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
+            <TextBlock x:Name="targetFinalPoint" HorizontalAlignment="Left" Margin="-470,-100,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="26"/>
+            <TextBlock x:Name="currentTarget" HorizontalAlignment="Left" Margin="-80,-400,0, 0" TextWrapping="Wrap" Text="●" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" TextAlignment="Center" Foreground="White" Height="54" Width="40"/>
 
-            <Line x:Name="targetLine"    X1="100" Y1="430"     X2="480" Y2="130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3" Grid.RowSpan="2" Margin="0,0,0,-0.4"/>
+            <Line x:Name="targetLine"    X1="-100" Y1="-430"     X2="-480" Y2="-130"    Stroke="White"    StrokeThickness="3" StrokeDashArray="6, 3" Grid.RowSpan="2" Margin="0,0,0,-0.4"/>
 
         </Grid>
 

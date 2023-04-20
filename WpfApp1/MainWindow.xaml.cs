@@ -33,7 +33,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             
-            StateDisplay.Text = "상태";
+            StateDisplay.Text = "State";
             Wrapper.simulationCtrl.MyEvent += new CHeadControllerWrapper.MyEventHandler(doAction);
         }
 
@@ -47,7 +47,7 @@ namespace WpfApp1
                 int status = Wrapper.simulationCtrl.getSimulatorStatus();
                 if (status == 0)
                 {
-                    StateDisplay.Text = "운용 준비 상태";
+                    StateDisplay.Text = "운용 준비";
 
                     if(Wrapper.simulationCtrl.getCheckMissileComm() && Wrapper.isExcute[0] == false)
                     {
@@ -65,7 +65,7 @@ namespace WpfApp1
                 }
                 else if (status == 1)
                 {
-                    StateDisplay.Text = "운용중 상태";
+                    StateDisplay.Text = "운용중";
 
                     if (Wrapper.simulationCtrl.getCheckDetect() && Wrapper.isExcute[3] == false)
                     {
@@ -103,7 +103,7 @@ namespace WpfApp1
                 }
                 else if (status == 2)
                 {
-                    StateDisplay.Text = "요격확인 상태";
+                    StateDisplay.Text = "요격확인";
                 }
                 else if (status == 3)
                 {
@@ -121,7 +121,7 @@ namespace WpfApp1
                         }
                         Wrapper.isExcute[2] = true;
                     }
-                    StateDisplay.Text = "운용종료 상태";
+                    StateDisplay.Text = "운용종료";
                 }
             }));
         }
