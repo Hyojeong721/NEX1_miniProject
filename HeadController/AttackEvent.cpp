@@ -1,6 +1,7 @@
 #include"pch.h"
 #include"AttackEvent.h"
-
+#include<fstream>
+#include<string>
 AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo targetInfo)
 {
 	//------------------------------------------------
@@ -22,7 +23,7 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 	// 4. 요격 위치, 시간 계산
 	//---------------------------------
 	// 4.1 유도탄의 시간/거리 배열 생성
-	const int noArray = 101;			// 시간/거리 베열의 요소 개수
+	const int noArray = 301;			// 시간/거리 베열의 요소 개수
 
 	double arrMisTime[noArray];			// 유도탄 비행시간
 	double arrMisRange[noArray];		// 유도탄 비행시간에 따른 사격 거리
@@ -32,8 +33,8 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 
 	for (int i = 1; i < noArray; i++)
 	{
-		arrMisRange[i] = arrMisRange[i - 1] + missileRange / ((double)noArray - 1);	// 50km를 noArray개수 만큼 나눔
-		arrMisTime[i] = arrMisRange[i] / mis_vel;									// 각 arrMisRange 요소에 해당되는 거리에 도달하는데 소요되는 시간
+		arrMisRange[i] = arrMisRange[i - 1] + 50000 / ((double)noArray - 1);	// 50km를 noArray개수 만큼 나눔
+		arrMisTime[i] = arrMisRange[i] / 340;									// 각 arrMisRange 요소에 해당되는 거리에 도달하는데 소요되는 시간
 	}
 	//---------------------------------
 	// 4.2 공중위협이 요격 가능한지 확인
@@ -45,23 +46,31 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 	double attackPoint_x = 0.0;
 	double attackPoint_y = 0.0;
 
+	//std::ofstream file_; file_.open("C:\\Users\\User\\Desktop\\실습\\SW구현\\miniPJT\\output2.txt");
+	////if (file_.is_open()) {
+	////}
+	////file_.close();
 	for (int i = 0; i < noArray - 1; i++) {
 		attackTime = detectTime + arrMisTime[i]; // (예상요격시간) = (탐지시간) + (유도탄 비행시간)
 
 		tar_x = tar_x_0 + vecTarget[0] * attackTime * tar_vel;	// 예상요격시간에 공중위협의 위치 계산
 		tar_y = tar_y_0 + vecTarget[1] * attackTime * tar_vel;
 
-		distance = CalculateDistance(tar_x, tar_y);		// "예상요격지점"에서 "유도탄 초기위치" 까지 거리 
 
+
+		distance = CalculateDistance(tar_x, tar_y);		// "예상요격지점"에서 "유도탄 초기위치" 까지 거리 
+		
 		for (int k = 0; k < noArray - 1; k++) {
 			if ((attackTime - detectTime) > arrMisTime[k]) {		// "(요격예상시간)-(탐지시간)" 이 "유도탄 비행시간" 보다 클 때 실행
-				distanceAttack = distance;						// (요격지점)과 (유도탄 초기위치)까지 거리
+				if (distance <= arrMisRange[k]) {
+					distanceAttack = distance;						// (요격지점)과 (유도탄 초기위치)까지 거리
 
-				attackPoint_x = tar_x;		// (요격 지점) == (공중위협 예상 위치)
-				attackPoint_y = tar_y;
+					attackPoint_x = tar_x;		// (요격 지점) == (공중위협 예상 위치)
+					attackPoint_y = tar_y;
 
-				endflag = true;
-				break;		// 요격 가능 지점을 찾았으므로 중단
+					endflag = true;
+					break;		// 요격 가능 지점을 찾았으므로 중단
+				}
 			}
 			else
 				break;		// 유도탄이 비행해서 요격할 수 없는 구간
@@ -69,6 +78,9 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 		if (endflag)		// 요격 가능 지점을 찾았으므로 중단
 			break;
 	}
+
+
+
 	if (endflag == false) {	// 요격 가능 지점을 찾지 못한 경우
 		{
 			attackinfo.checkAttackAvailable = false;
@@ -77,8 +89,12 @@ AttackInfo AttackEvent::CalculateAttackEvent(MissileInfo missileinfo, TargetInfo
 	}
 	//---------------------------------
 	// 4.3 유도탄 발사 시간 계산
-	attackinfo.launchTime = attackTime - (distanceAttack / mis_vel);	// 유도탄 발사시간 = 요격예상시간 - (요격지점과 유도탄초기위치거리/유도탄 속도)
+	attackinfo.launchTime = attackTime - detectTime;	// 유도탄 발사시간 = 요격예상시간 - (요격지점과 유도탄초기위치거리/유도탄 속도)
 
+
+	/*file_ << std::to_string(attackinfo.launchTime) << "\n";
+
+	file_.close();*/
 	//---------------------------------
 	// 4.4 유도탄 요격 위치 == 유도탄 목표 위치
 	attackinfo.attackPoint_x = attackPoint_x;
