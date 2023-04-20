@@ -52,7 +52,7 @@
             </Border.Effect>
 
             <Grid>
-                <TextBlock x:Name="MissileInfo"   Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missle" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
+                <TextBlock x:Name="MissileInfo"   Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Missile" VerticalAlignment="Top" Width="103" FontWeight="Bold" FontSize="25" Margin="10,10,0,0"/>
                 <TextBlock x:Name="M_StartPoint" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="Start Point" VerticalAlignment="Top" Width="90" FontSize="18" Margin="13,68,0,0"/>
                 <TextBlock x:Name="M_StartPointData_X" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="18" Margin="112,68,0,0" TextAlignment="Center" Text="0" IsEnabled="False"/>
                 <TextBlock x:Name="M_StartPointData_Y" Foreground="White" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="18" Margin="172,68,0,0" TextAlignment="Center" Text="0" IsEnabled="False"/>

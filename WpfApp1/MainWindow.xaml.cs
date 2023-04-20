@@ -86,11 +86,7 @@ namespace WpfApp1
                     // 현재 유도탄 위치 GUI
                     double mx = 0.0;
                     double my = 0.0;
-                    string strmx = mx.ToString();
-                    string strmy = my.ToString();
-                    outputboxX.Text = strmx;
-                    outputboxY.Text = strmy;
-
+             
                     unsafe
                     {
                         Wrapper.simulationCtrl.getMissleScenario(&mx, &my);
@@ -98,6 +94,12 @@ namespace WpfApp1
                     // 유도탄 초기 설정값으로 위치 이동
                     mx = mx - 160;
                     my = 475 - my;
+
+                    string strmx = mx.ToString();
+                    string strmy = my.ToString();
+
+                    outputboxX.Text = strmx;
+                    outputboxY.Text = strmy;
 
                     MissileCanvas.Margin = new System.Windows.Thickness { Left = mx, Top = my, Right = 0, Bottom = 0 };
                 }
@@ -134,6 +136,7 @@ namespace WpfApp1
             TargetScenario.Owner = Application.Current.MainWindow; // 메인화면 중앙에 팝업창 띄우기
             TargetScenario.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             TargetScenario.ShowDialog();
+
 
             if (Wrapper.simulationCtrl.getTargetStatus() == true)
             {
@@ -223,12 +226,6 @@ namespace WpfApp1
                 MissileCanvas.Margin = new System.Windows.Thickness { Left = x, Top = y, Right = 0, Bottom = 0 };
                 
             }
-        }
-        
-        
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
 
